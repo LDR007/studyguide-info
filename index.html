@@ -78,6 +78,15 @@
       header h1 span {
         color: var(--accent);
       }
+      .header-left {
+        display: flex;
+        align-items: center;
+      }
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
 
       .btn-home {
         background: var(--border);
@@ -227,6 +236,16 @@
         font-size: 1rem;
         margin: 0;
         max-width: 280px;
+      }
+      .home-title {
+        border: none;
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+      }
+      .home-desc {
+        color: var(--muted);
+        font-size: 1.1rem;
       }
 
       /* ── LAYOUT ── */
@@ -760,6 +779,25 @@
         }
       }
 
+      @media (max-width: 600px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.8rem;
+          padding: 1rem;
+        }
+        .header-nav {
+          width: 100%;
+          justify-content: flex-start;
+        }
+        .home-grid {
+          grid-template-columns: 1fr;
+        }
+        .home-title {
+          font-size: 2.5rem;
+        }
+      }
+
       /* ── PROGRESS BAR ── */
       #reading-progress {
         position: fixed;
@@ -855,14 +893,11 @@
   <body>
     <div id="reading-progress"></div>
     <header>
-      <div class="header-left" style="display: flex; align-items: center">
+      <div class="header-left">
         <button id="mobile-menu-toggle">☰</button>
         <h1 id="dynamic-title">Study Guide — <span>Home</span></h1>
       </div>
-      <div
-        class="header-nav"
-        style="display: flex; align-items: center; gap: 1rem"
-      >
+      <div class="header-nav">
         <div style="position: relative; display: inline-block">
           <input
             type="text"
@@ -924,17 +959,10 @@
     <div id="view-home" class="view active">
       <div class="home-container">
         <div style="text-align: center; margin-bottom: 3rem">
-          <h2
-            style="
-              border: none;
-              font-size: 3.5rem;
-              margin-bottom: 0.5rem;
-              font-weight: 800;
-            "
-          >
+          <h2 class="home-title">
             Study Guide
           </h2>
-          <p style="color: var(--muted); font-size: 1.1rem">
+          <p class="home-desc">
             Benvenuto. Scegli un'area tematica per esplorare i materiali di
             studio.
           </p>
