@@ -360,6 +360,7 @@
         border-radius: 16px;
         margin-bottom: 5rem;
         scroll-margin-top: 100px;
+        overflow-x: hidden;
       }
       @media (max-width: 600px) {
         .arg-block {
@@ -463,8 +464,10 @@
         border-radius: 8px;
         padding: 1.1rem 1.3rem;
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         margin: 0.7rem 0 1.2rem;
         position: relative;
+        max-width: 100%;
       }
       pre .ll {
         position: absolute;
@@ -695,11 +698,13 @@
         z-index: 998;
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s;
+        transition: opacity 0.3s, visibility 0.3s;
+        pointer-events: none;
       }
       #nav-overlay.visible {
         opacity: 1;
         visibility: visible;
+        pointer-events: auto;
       }
 
       /* Sovrascrivi Prism.js background in modo da fondersi con il tema */
@@ -725,20 +730,21 @@
           position: fixed;
           top: var(--header-h); /* Sotto l'header */
           left: -260px; /* Nascosto a sinistra */
-          width: 240px;
+          width: 260px;
           height: calc(100vh - var(--header-h));
           background: var(--surface);
           z-index: 999;
           transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border-right: 1px solid var(--border);
           box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+          padding-bottom: 2rem;
         }
         nav.nav-open {
           left: 0;
         }
 
         main {
-          padding: 2rem;
+          padding: 2rem 1.5rem;
         }
 
         .header-nav {
