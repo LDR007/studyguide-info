@@ -38,6 +38,7 @@
         --alg: #e0a070;
         --norm: #bd93f9;
         --reti: #ff9f43;
+        --header-h: 76px;
       }
       * {
         margin: 0;
@@ -50,6 +51,11 @@
         color: var(--text);
         line-height: 1.65;
         overflow-x: hidden;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
       }
 
       /* ── HEADER ── */
@@ -163,12 +169,12 @@
       #view-home.active {
         display: flex;
         flex-direction: column;
-        min-height: calc(100vh - 76px);
+        min-height: calc(100vh - var(--header-h));
       }
 
       /* ── HOME PAGE ── */
       .home-container {
-        min-height: calc(100vh - 76px - 100px);
+        min-height: calc(100vh - var(--header-h) - 100px);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -177,7 +183,7 @@
       }
       .home-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2.5rem;
         width: 100%;
         max-width: 1000px;
@@ -227,7 +233,7 @@
       .layout {
         display: grid;
         grid-template-columns: 240px 1fr;
-        min-height: calc(100vh - 76px);
+        min-height: calc(100vh - var(--header-h));
       }
 
       /* ── SIDEBAR ── */
@@ -236,8 +242,8 @@
         border-right: 1px solid var(--border);
         padding: 1.2rem 0.9rem;
         position: sticky;
-        top: 76px;
-        height: calc(100vh - 76px);
+        top: var(--header-h);
+        height: calc(100vh - var(--header-h));
         overflow-y: auto;
       }
       nav a {
@@ -342,6 +348,11 @@
         max-width: 1000px;
         margin: 0 auto;
       }
+      @media (max-width: 600px) {
+        main {
+          padding: 1.5rem 1.25rem;
+        }
+      }
       .arg-block {
         background: rgba(21, 22, 29, 0.4);
         border: 1px solid var(--border);
@@ -349,6 +360,12 @@
         border-radius: 16px;
         margin-bottom: 5rem;
         scroll-margin-top: 100px;
+      }
+      @media (max-width: 600px) {
+        .arg-block {
+          padding: 1.5rem;
+          margin-bottom: 3.5rem;
+        }
       }
 
       h2 {
@@ -670,10 +687,10 @@
 
       #nav-overlay {
         position: fixed;
-        top: 76px;
+        top: var(--header-h);
         left: 0;
         width: 100vw;
-        height: calc(100vh - 76px);
+        height: calc(100vh - var(--header-h));
         background: rgba(0, 0, 0, 0.5);
         z-index: 998;
         opacity: 0;
@@ -706,10 +723,10 @@
         /* Drawer Mobile per la navigazione */
         nav {
           position: fixed;
-          top: 76px; /* Sotto l'header */
+          top: var(--header-h); /* Sotto l'header */
           left: -260px; /* Nascosto a sinistra */
           width: 240px;
-          height: calc(100vh - 76px);
+          height: calc(100vh - var(--header-h));
           background: var(--surface);
           z-index: 999;
           transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1471,7 +1488,8 @@
 
             <section id="php-tags">
               <h3>Tags &amp; echo automatico</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tag</th>
                   <th>Comportamento</th>
@@ -1487,7 +1505,8 @@
                     <strong>echo automatico</strong>.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <pre><code><span class="ll">php</span><span class="kw">&lt;?php</span> <span class="var">$nome</span> = <span class="str">"Mario"</span>; <span class="fn">echo</span> <span class="str">"Ciao "</span> . <span class="var">$nome</span>; <span class="kw">?&gt;</span>
 
 &lt;h1&gt;Benvenuto <span class="kw">&lt;?=</span> <span class="fn">htmlspecialchars</span>(<span class="var">$nome</span>) <span class="kw">?&gt;</span>&lt;/h1&gt;</code></pre>
@@ -1495,7 +1514,8 @@
 
             <section id="php-require">
               <h3>require / include — componenti</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Funzione</th>
                   <th>Se il file manca</th>
@@ -1512,7 +1532,8 @@
                   <td><code>require_once</code></td>
                   <td>Come require, ma non include due volte.</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <pre><code><span class="ll">php</span><span class="kw">&lt;?php</span> <span class="fn">require</span> <span class="str">'db.php'</span>;             <span class="cm">// connessione PDO</span>   <span class="kw">?&gt;</span>
 <span class="kw">&lt;?php</span> <span class="fn">require</span> <span class="str">'components/header.php'</span>; <span class="kw">?&gt;</span>
 <span class="kw">&lt;?php</span> <span class="fn">require</span> <span class="str">'components/nav.php'</span>;    <span class="kw">?&gt;</span></code></pre>
@@ -1627,7 +1648,8 @@
 
             <section id="pdo-misc">
               <h3>Altri metodi utili</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Metodo</th>
                   <th>Cosa ritorna / fa</th>
@@ -1665,7 +1687,8 @@
                   <td><code>$pdo->rollBack()</code></td>
                   <td>Annulla transazione.</td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="pdo-blob">
@@ -1775,7 +1798,8 @@
 
             <section id="html-form">
               <h3>Attributi del &lt;form&gt;</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Attributo</th>
                   <th>Valori / note</th>
@@ -1800,7 +1824,8 @@
                     carichi file.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="html-inputs">
@@ -1830,7 +1855,8 @@
 
 <span class="cm">&lt;!-- SUBMIT --&gt;</span>
 &lt;<span class="tc">button</span> <span class="at">type</span>=<span class="av">"submit"</span>&gt;Invia&lt;/<span class="tc">button</span>&gt;</code></pre>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>type</th>
                   <th>Dato in $_POST</th>
@@ -1870,7 +1896,8 @@
                   <td>Il <code>value</code> (se name)</td>
                   <td>Invia il form.</td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
           </section>
 
@@ -1943,7 +1970,8 @@ textarea, select</span> {
                 ciclo di vita di un sistema informativo, che comprende 6 fasi
                 principali:
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>#</th>
                   <th>Fase</th>
@@ -1997,7 +2025,8 @@ textarea, select</span> {
                     manutenzione.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout er">
                 <strong>⚠ Non è strettamente sequenziale:</strong> durante ogni
                 fase si possono rivedere decisioni delle fasi precedenti. Si
@@ -2012,7 +2041,8 @@ textarea, select</span> {
                 principio di separare il <em>"cosa"</em> rappresentare dal
                 <em>"come"</em> farlo:
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Fase</th>
                   <th>Prodotto</th>
@@ -2043,7 +2073,8 @@ textarea, select</span> {
                     memorizzazione.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout tip">
                 <strong>💡</strong> Il risultato finale comprende tutti e tre
                 gli schemi: lo schema concettuale (documentazione ad alto
@@ -2119,7 +2150,8 @@ textarea, select</span> {
               </div>
 
               <h3 class="sub">Tipi di relazione</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Descrizione</th>
@@ -2144,7 +2176,8 @@ textarea, select</span> {
                   <td>Coinvolge più di 2 entità</td>
                   <td>Fornitore — Fornitura — Prodotto — Dipartimento</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout warn">
                 <strong>⚠ Ennuple ripetute:</strong> se uno studente sostiene
                 più volte lo stesso esame, la relazione <em>Esame</em> non basta
@@ -2203,7 +2236,8 @@ textarea, select</span> {
                 Specificano quante occorrenze di una relazione può avere ogni
                 entità: <code>(min, max)</code>.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Valore</th>
                   <th>Significato</th>
@@ -2227,9 +2261,11 @@ textarea, select</span> {
                   <td><code>max = N</code></td>
                   <td>Numero arbitrario di occorrenze</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <h3 class="sub">Tipi di corrispondenza (in base a max)</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Cardinalità massime</th>
@@ -2253,7 +2289,8 @@ textarea, select</span> {
                   <td>max=N per entrambe</td>
                   <td>Prenotazione tra Cliente e Camera</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="er-diagram">
                 <div class="er-entity">Persona</div>
                 <span class="er-card">(0,1)</span>
@@ -2278,7 +2315,8 @@ textarea, select</span> {
                 Ogni entità deve avere almeno un identificatore che individui
                 univocamente le occorrenze.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Descrizione</th>
@@ -2308,7 +2346,8 @@ textarea, select</span> {
                     possono coincidere)
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout er">
                 <strong>Regole sugli identificatori:</strong>
                 <ul style="margin-top: 0.4rem">
@@ -2381,7 +2420,8 @@ textarea, select</span> {
                 </div>
               </div>
               <h3 class="sub">Classificazione delle generalizzazioni</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Proprietà</th>
                   <th>Totale</th>
@@ -2408,8 +2448,10 @@ textarea, select</span> {
                     professionisti)
                   </td>
                 </tr>
-              </table>
-              <table>
+                </table>
+              </div>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Proprietà</th>
                   <th>Esclusiva</th>
@@ -2427,7 +2469,8 @@ textarea, select</span> {
                     Persona → Studente, Lavoratore (si può essere entrambi)
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout tip">
                 <strong>💡 Sovrapposta → Esclusiva:</strong> si trasforma
                 aggiungendo entità intersezione. Es. aggiungere
@@ -2455,7 +2498,8 @@ textarea, select</span> {
               </ul>
               <h3 class="sub">Dizionario dei dati</h3>
               <p>Due tabelle che documentano entità e relazioni:</p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Entità</th>
                   <th>Descrizione</th>
@@ -2486,8 +2530,10 @@ textarea, select</span> {
                   <td>Città, Indirizzo (Via, N., CAP)</td>
                   <td>Città</td>
                 </tr>
-              </table>
-              <table>
+                </table>
+              </div>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Relazione</th>
                   <th>Descrizione</th>
@@ -2518,7 +2564,8 @@ textarea, select</span> {
                   <td>Dipartimento (1,1), Sede (1,N)</td>
                   <td>—</td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="er-regole">
@@ -2527,7 +2574,8 @@ textarea, select</span> {
                 Una regola aziendale è qualunque informazione che definisce o
                 vincola un aspetto dell'applicazione. Tre tipi:
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Struttura</th>
@@ -2564,7 +2612,8 @@ textarea, select</span> {
                     contando quelli che vi afferiscono.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <h3 class="sub">Implementazione delle regole</h3>
               <ul>
                 <li>
@@ -2641,7 +2690,8 @@ textarea, select</span> {
           <!-- ══════════════════ QUICK REF ══════════════════ -->
           <section id="s-ref">
             <h2>⚡ Quick reference card</h2>
-            <table>
+            <div class="table-wrapper">
+              <table>
               <tr>
                 <th>Cosa</th>
                 <th>Da ricordare</th>
@@ -2932,7 +2982,8 @@ textarea, select</span> {
                   (−).
                 </td>
               </tr>
-            </table>
+              </table>
+            </div>
           </section>
 
           <!-- ══════════ MODELLO RELAZIONALE ══════════ -->
@@ -2948,7 +2999,8 @@ textarea, select</span> {
                 di un concetto formale e uno intuitivo è alla base del suo
                 successo.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Concetto</th>
                   <th>Definizione</th>
@@ -2992,7 +3044,8 @@ textarea, select</span> {
                     Rₙ(Xₙ)}
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout rel">
                 <strong>Proprietà delle relazioni (come insiemi):</strong> non
                 esiste ordinamento fra le tuple; non ci possono essere tuple
@@ -3035,7 +3088,8 @@ Juventus       | Roma               | 1        | 2</code></pre>
                 non puntatori. Questo è il principio fondamentale che distingue
                 il modello relazionale dai modelli gerarchico e reticolare.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Vantaggio</th>
                   <th>Spiegazione</th>
@@ -3061,7 +3115,8 @@ Juventus       | Roma               | 1        | 2</code></pre>
                     l'applicazione.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <pre><code><span class="ll">schema</span>Studenti (Matricola, Cognome, Nome, DataNascita)
 Esami    (Studente, Voto, Corso)          -- Studente = matricola → riferimento per valore
 Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per valore</code></pre>
@@ -3074,7 +3129,8 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
                 informazione. Non è un valore del dominio ma un marcatore
                 speciale. Tre significati possibili:
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Significato</th>
@@ -3097,7 +3153,8 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
                   <td>Non sappiamo se esiste né il suo valore</td>
                   <td>Provincia di nuova istituzione — status ignoto</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout warn">
                 <strong
                   >⚠ I sistemi relazionali trattano tutti i NULL allo stesso
@@ -3116,7 +3173,8 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
                 istanze corrette. Le istanze che soddisfano tutti i vincoli sono
                 dette <em>lecite</em>.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Definizione</th>
@@ -3142,7 +3200,8 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
                   <td>Coinvolge più relazioni</td>
                   <td>Matricola in Esami deve esistere in Studenti</td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="rel-chiavi">
@@ -3151,7 +3210,8 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
                 Una <strong>chiave</strong> è un insieme minimale di attributi
                 che identifica univocamente le tuple.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Concetto</th>
                   <th>Definizione</th>
@@ -3183,7 +3243,8 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
                     Chiave non scelta come primaria. NULL in genere ammessi.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout tip">
                 <strong>💡</strong> Ogni relazione ha sempre almeno una chiave:
                 nel caso peggiore, l'insieme di tutti gli attributi è
@@ -3234,7 +3295,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                 schema E-R. Non è una semplice traduzione: lo schema E-R va
                 prima <em>ristrutturato</em>.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Fase</th>
                   <th>Input</th>
@@ -3256,7 +3318,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                     documentazione
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <p>La ristrutturazione si articola in 4 passi in sequenza:</p>
               <ul>
                 <li>Analisi delle ridondanze</li>
@@ -3273,7 +3336,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                 se mantenerla o eliminarla confrontando costo delle operazioni e
                 occupazione di memoria.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo di ridondanza</th>
                   <th>Esempio</th>
@@ -3300,7 +3364,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                   <td>Associazione derivabile da composizione di altre</td>
                   <td>Docenza = Frequenza ∘ Insegnamento</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout tip">
                 <strong>💡 Regola "ottanta-venti":</strong> l'80% del carico è
                 generato dal 20% delle operazioni — basta concentrarsi sulle
@@ -3322,7 +3387,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                 Il modello relazionale non supporta direttamente le
                 generalizzazioni. Tre alternative:
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Alternativa</th>
                   <th>Come</th>
@@ -3366,7 +3432,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                     efficiente.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="pl-partizionamento">
@@ -3422,7 +3489,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
 
             <section id="pl-traduzione">
               <h3 class="rel">Traduzione E-R → Modello Relazionale</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Caso E-R</th>
                   <th>Traduzione</th>
@@ -3510,7 +3578,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                     <code>COMPOSIZIONE(Composto, Componente, Quantità)</code>
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout tip">
                 <strong>💡 Ridenominazioni:</strong> sono obbligatorie quando lo
                 stesso attributo identifica concetti diversi (es. associazioni
@@ -3533,7 +3602,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                 relazioni come output. Questo permette di comporre operatori per
                 interrogazioni complesse.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Categoria</th>
                   <th>Operatori</th>
@@ -3553,7 +3623,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                     Equi-join, Join esterno
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="alg-insiemistici">
@@ -3563,7 +3634,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                 <strong>stessi attributi</strong> (altrimenti il risultato non è
                 una relazione).
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Operatore</th>
                   <th>Notazione</th>
@@ -3589,7 +3661,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                   <td><code>r₁ − r₂</code></td>
                   <td>Tuple che appartengono a r₁ ma <em>non</em> a r₂.</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout alg">
                 <strong>r₁ ∩ r₂ = r₁ − (r₁ − r₂)</strong> — l'intersezione è
                 derivabile dalla differenza.
@@ -3647,7 +3720,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
 
 π Cognome, Nome (Impiegati)
 π Reparto, Capo (Impiegati)    -- possibile riduzione tuple (duplicati collassano)</code></pre>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Proprietà</th>
                   <th>Condizione</th>
@@ -3663,7 +3737,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                     collassano in una)
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="alg-join">
@@ -3677,7 +3752,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
 
 -- Definizione formale:
 -- r₁⨝r₂ = { t su X₁X₂ | t[X₁] ∈ r₁  e  t[X₂] ∈ r₂ }</code></pre>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Caso</th>
                   <th>Dimensione risultato</th>
@@ -3708,8 +3784,10 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                     possibili: |r₁| × |r₂| tuple.
                   </td>
                 </tr>
-              </table>
-              <table>
+                </table>
+              </div>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Proprietà importanti</th>
                   <th></th>
@@ -3733,13 +3811,15 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                   <td>X₁∩X₂ è chiave di r₂ + vincolo referenziale</td>
                   <td>Il join contiene esattamente |r₁| tuple</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <h3 class="sub">Join esterno (outer join)</h3>
               <p>
                 Variante che include anche le tuple senza controparte, estese
                 con NULL:
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Notazione</th>
@@ -3760,7 +3840,8 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
                   <td><code>r₁ ⨝FULL r₂</code></td>
                   <td>Tutte le tuple di entrambi</td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="alg-theta">
@@ -3855,7 +3936,8 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
                 Consideriamo una relazione che riunisce concetti fra loro
                 disomogenei. Esempio: impiegati, progetti e partecipazioni.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Impiegato</th>
                   <th>Stipendio</th>
@@ -3898,7 +3980,8 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
                   <td>15000</td>
                   <td>consulente</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <p>Questa relazione presenta tre tipi di anomalie:</p>
               <ul>
                 <li>
@@ -4005,7 +4088,8 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
               <p>
                 Esempio di decomposizione <strong>con perdita</strong> (spuria):
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Impiegato</th>
                   <th>Sede</th>
@@ -4018,8 +4102,10 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
                   <td>Verdi</td>
                   <td>Milano</td>
                 </tr>
-              </table>
-              <table>
+                </table>
+              </div>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Progetto</th>
                   <th>Sede</th>
@@ -4032,7 +4118,8 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
                   <td>Saturno</td>
                   <td>Milano</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <p>
                 Il join su <code>Sede</code> potrebbe creare tuple spurie se più
                 impiegati lavorano nella stessa sede dove si svolgono più
@@ -4197,7 +4284,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
               </p>
 
               <h3 class="sub reti">Architetture CPU: CISC vs RISC</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Caratteristica</th>
                   <th>CISC (Complex Instruction Set)</th>
@@ -4218,7 +4306,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                   <td>Intel x86 (Desktop)</td>
                   <td>ARM (Smartphone, Apple Silicon)</td>
                 </tr>
-              </table>
+                </table>
+              </div>
 
               <h3 class="sub reti">
                 Il Modello a Strati: Mr. Smith e Miss Jones
@@ -4257,7 +4346,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                 l'interconnessione di sistemi informatici tramite un approccio a
                 7 livelli.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Livello OSI</th>
                   <th>PDU</th>
@@ -4306,7 +4396,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                     Trasmissione bit sul mezzo fisico (Cavi, Hub, frequenze).
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
 
               <h3 class="sub reti">PDU, SDU e Incapsulamento</h3>
               <div class="callout warn">
@@ -4325,7 +4416,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
               </p>
 
               <h3 class="sub reti">Confronto OSI vs TCP/IP</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Caratteristica</th>
                   <th>Modello ISO/OSI</th>
@@ -4351,7 +4443,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                   <td>Trasporto garantisce consegna.</td>
                   <td>Affidabilità gestita da TCP (non dal modello).</td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="s-modulo1">
@@ -4379,7 +4472,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
               </ul>
 
               <h3 class="sub reti">Meccanismi di Accesso: CSMA/CD e CSMA/CA</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Protocollo</th>
                   <th>Nome</th>
@@ -4403,7 +4497,8 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                     <em>prima</em> di trasmettere e aspetta un <em>ACK</em>.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
 
               <h3 class="sub reti">1.2 Ethernet e Mezzi Fisici</h3>
               <p>
@@ -4583,7 +4678,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                 la notazione <code>/N</code> per indicare il numero di bit a 1
                 nella maschera.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Classe</th>
                   <th>Range (1° ott.)</th>
@@ -4608,7 +4704,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                   <td>255.255.255.0 (/24)</td>
                   <td>192.168.0.0 – 192.168.255.255</td>
                 </tr>
-              </table>
+                </table>
+              </div>
 
               <h3 class="sub reti">FLSM vs VLSM</h3>
               <ul>
@@ -4712,7 +4809,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                   proprietario ufficiale dei dati di una zona.
                 </li>
               </ul>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Record</th>
                   <th>Nome</th>
@@ -4741,7 +4839,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                   <td>Text</td>
                   <td>Informazioni testuali (es. verifica proprietà, SPF).</td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout tip">
                 <strong>Strumenti:</strong> Usa
                 <code>nslookup example.com</code> per verificare i record DNS da
@@ -4772,7 +4871,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                 </li>
               </ul>
               <p><strong>Modalità operative:</strong></p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Associazione</th>
@@ -4793,7 +4893,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                   <td>Molti IP Privati → 1 IP Pubblico</td>
                   <td>Navigazione standard di tutta la LAN domestica.</td>
                 </tr>
-              </table>
+                </table>
+              </div>
             </section>
 
             <section id="s-modulo4">
@@ -4806,7 +4907,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
               </p>
 
               <h3 class="sub reti">4.1 Algoritmi e Protocolli Dinamici</h3>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Protocollo</th>
                   <th>Algoritmo / Tipo</th>
@@ -4829,7 +4931,8 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                     AD: 110.
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
 
               <h3 class="sub reti">Prevenzione Loop (RIP)</h3>
               <ul>
@@ -4873,7 +4976,8 @@ Router# traceroute 8.8.8.8       <span class="cm">-- Analisi del percorso</span>
                 <strong>Implicit Deny</strong>: tutto ciò che non è permesso
                 esplicitamente viene bloccato.
               </p>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Numerazione</th>
@@ -4898,7 +5002,8 @@ Router# traceroute 8.8.8.8       <span class="cm">-- Analisi del percorso</span>
                     banda).
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
               <div class="callout warn">
                 <strong>Parametro established:</strong> Nelle ACL estese,
                 permette solo il traffico TCP di risposta (ACK o RST set).
@@ -5069,7 +5174,8 @@ policy-map global_policy
                   condividono le stesse risorse fisiche, isolati via software.
                 </li>
               </ul>
-              <table>
+              <div class="table-wrapper">
+                <table>
                 <tr>
                   <th>Modello</th>
                   <th>Nome</th>
@@ -5098,7 +5204,8 @@ policy-map global_policy
                     Office 365).
                   </td>
                 </tr>
-              </table>
+                </table>
+              </div>
 
               <h3 class="sub reti">Crittografia</h3>
               <p>
@@ -5613,6 +5720,15 @@ policy-map global_policy
       document.querySelectorAll("section[id]").forEach((sec) => {
         revealObserver.observe(sec);
       });
+
+      // ── DYNAMIC HEADER HEIGHT ──
+      function updateHeaderHeight() {
+        const h = document.querySelector("header").offsetHeight;
+        document.documentElement.style.setProperty("--header-h", h + "px");
+      }
+      window.addEventListener("resize", updateHeaderHeight);
+      window.addEventListener("load", updateHeaderHeight);
+      updateHeaderHeight();
     </script>
   </body>
 </html>
