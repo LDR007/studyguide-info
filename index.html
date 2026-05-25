@@ -731,7 +731,9 @@
         z-index: 998;
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s, visibility 0.3s;
+        transition:
+          opacity 0.3s,
+          visibility 0.3s;
         pointer-events: none;
       }
       #nav-overlay.visible {
@@ -1008,9 +1010,7 @@
     <div id="view-home" class="view active">
       <div class="home-container">
         <div style="text-align: center; margin-bottom: 3rem">
-          <h2 class="home-title">
-            Study Guide
-          </h2>
+          <h2 class="home-title">Study Guide</h2>
           <p class="home-desc">
             Benvenuto. Scegli un'area tematica per esplorare i materiali di
             studio.
@@ -1106,7 +1106,7 @@
         </nav>
         <main>
           <!-- ══════════════════ SQL ══════════════════ -->
-          <section id="s-sql">
+          <section id="s-sql" class="arg-block">
             <h2><span class="tag sql">SQL</span> Language</h2>
 
             <section id="sql-base">
@@ -1566,28 +1566,28 @@
             </section>
           </section>
           <!-- ══════════════════ PHP ══════════════════ -->
-          <section id="s-php">
+          <section id="s-php" class="arg-block">
             <h2><span class="tag php">PHP</span> Language basics</h2>
 
             <section id="php-tags">
               <h3>Tags &amp; echo automatico</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tag</th>
-                  <th>Comportamento</th>
-                </tr>
-                <tr>
-                  <td><code>&lt;?php ... ?&gt;</code></td>
-                  <td>Standard — <strong>no</strong> echo automatico.</td>
-                </tr>
-                <tr>
-                  <td><code>&lt;?= $var ?&gt;</code></td>
-                  <td>
-                    Shorthand per <code>echo $var</code> —
-                    <strong>echo automatico</strong>.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Tag</th>
+                    <th>Comportamento</th>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;?php ... ?&gt;</code></td>
+                    <td>Standard — <strong>no</strong> echo automatico.</td>
+                  </tr>
+                  <tr>
+                    <td><code>&lt;?= $var ?&gt;</code></td>
+                    <td>
+                      Shorthand per <code>echo $var</code> —
+                      <strong>echo automatico</strong>.
+                    </td>
+                  </tr>
                 </table>
               </div>
               <pre><code><span class="ll">php</span><span class="kw">&lt;?php</span> <span class="var">$nome</span> = <span class="str">"Mario"</span>; <span class="fn">echo</span> <span class="str">"Ciao "</span> . <span class="var">$nome</span>; <span class="kw">?&gt;</span>
@@ -1599,22 +1599,22 @@
               <h3>require / include — componenti</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Funzione</th>
-                  <th>Se il file manca</th>
-                </tr>
-                <tr>
-                  <td><code>require 'f.php'</code></td>
-                  <td>Errore fatale, blocca tutto.</td>
-                </tr>
-                <tr>
-                  <td><code>include 'f.php'</code></td>
-                  <td>Solo warning, continua.</td>
-                </tr>
-                <tr>
-                  <td><code>require_once</code></td>
-                  <td>Come require, ma non include due volte.</td>
-                </tr>
+                  <tr>
+                    <th>Funzione</th>
+                    <th>Se il file manca</th>
+                  </tr>
+                  <tr>
+                    <td><code>require 'f.php'</code></td>
+                    <td>Errore fatale, blocca tutto.</td>
+                  </tr>
+                  <tr>
+                    <td><code>include 'f.php'</code></td>
+                    <td>Solo warning, continua.</td>
+                  </tr>
+                  <tr>
+                    <td><code>require_once</code></td>
+                    <td>Come require, ma non include due volte.</td>
+                  </tr>
                 </table>
               </div>
               <pre><code><span class="ll">php</span><span class="kw">&lt;?php</span> <span class="fn">require</span> <span class="str">'db.php'</span>;             <span class="cm">// connessione PDO</span>   <span class="kw">?&gt;</span>
@@ -1676,7 +1676,7 @@
           </section>
 
           <!-- ══════════════════ PDO ══════════════════ -->
-          <section id="s-pdo">
+          <section id="s-pdo" class="arg-block">
             <h2><span class="tag php">PDO</span> Database interface</h2>
 
             <section id="pdo-connect">
@@ -1733,43 +1733,45 @@
               <h3>Altri metodi utili</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Metodo</th>
-                  <th>Cosa ritorna / fa</th>
-                </tr>
-                <tr>
-                  <td><code>$pdo->lastInsertId()</code></td>
-                  <td>ID dell'ultimo INSERT. Chiamato su <code>$pdo</code>.</td>
-                </tr>
-                <tr>
-                  <td><code>$stmt->rowCount()</code></td>
-                  <td>
-                    Righe modificate da UPDATE/DELETE. Chiamato su
-                    <code>$stmt</code>.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>$stmt->fetchColumn(n)</code></td>
-                  <td>Valore scalare della colonna n.</td>
-                </tr>
-                <tr>
-                  <td>
-                    <code>$stmt->bindParam(':x', $var, PDO::PARAM_LOB)</code>
-                  </td>
-                  <td>Binda parametro per tipo — necessario per BLOB.</td>
-                </tr>
-                <tr>
-                  <td><code>$pdo->beginTransaction()</code></td>
-                  <td>Avvia transazione.</td>
-                </tr>
-                <tr>
-                  <td><code>$pdo->commit()</code></td>
-                  <td>Conferma transazione.</td>
-                </tr>
-                <tr>
-                  <td><code>$pdo->rollBack()</code></td>
-                  <td>Annulla transazione.</td>
-                </tr>
+                  <tr>
+                    <th>Metodo</th>
+                    <th>Cosa ritorna / fa</th>
+                  </tr>
+                  <tr>
+                    <td><code>$pdo->lastInsertId()</code></td>
+                    <td>
+                      ID dell'ultimo INSERT. Chiamato su <code>$pdo</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>$stmt->rowCount()</code></td>
+                    <td>
+                      Righe modificate da UPDATE/DELETE. Chiamato su
+                      <code>$stmt</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>$stmt->fetchColumn(n)</code></td>
+                    <td>Valore scalare della colonna n.</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <code>$stmt->bindParam(':x', $var, PDO::PARAM_LOB)</code>
+                    </td>
+                    <td>Binda parametro per tipo — necessario per BLOB.</td>
+                  </tr>
+                  <tr>
+                    <td><code>$pdo->beginTransaction()</code></td>
+                    <td>Avvia transazione.</td>
+                  </tr>
+                  <tr>
+                    <td><code>$pdo->commit()</code></td>
+                    <td>Conferma transazione.</td>
+                  </tr>
+                  <tr>
+                    <td><code>$pdo->rollBack()</code></td>
+                    <td>Annulla transazione.</td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -1795,7 +1797,7 @@
           </section>
 
           <!-- ══════════════════ SESSIONS ══════════════════ -->
-          <section id="s-ses">
+          <section id="s-ses" class="arg-block">
             <h2><span class="tag ses">PHP</span> Sessions</h2>
 
             <section id="ses-basics">
@@ -1876,37 +1878,37 @@
           </section>
 
           <!-- ══════════════════ HTML FORMS ══════════════════ -->
-          <section id="s-html">
+          <section id="s-html" class="arg-block">
             <h2><span class="tag html">HTML</span> Forms &amp; inputs</h2>
 
             <section id="html-form">
               <h3>Attributi del &lt;form&gt;</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Attributo</th>
-                  <th>Valori / note</th>
-                </tr>
-                <tr>
-                  <td><code>method</code></td>
-                  <td>
-                    <code>POST</code> (dati nel body) o <code>GET</code> (dati
-                    nell'URL).
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>action</code></td>
-                  <td>
-                    URL destinazione. Se omesso, invia alla pagina corrente.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>enctype</code></td>
-                  <td>
-                    <code>multipart/form-data</code> — obbligatorio SOLO se
-                    carichi file.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Attributo</th>
+                    <th>Valori / note</th>
+                  </tr>
+                  <tr>
+                    <td><code>method</code></td>
+                    <td>
+                      <code>POST</code> (dati nel body) o <code>GET</code> (dati
+                      nell'URL).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>action</code></td>
+                    <td>
+                      URL destinazione. Se omesso, invia alla pagina corrente.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>enctype</code></td>
+                    <td>
+                      <code>multipart/form-data</code> — obbligatorio SOLO se
+                      carichi file.
+                    </td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -1940,52 +1942,54 @@
 &lt;<span class="tc">button</span> <span class="at">type</span>=<span class="av">"submit"</span>&gt;Invia&lt;/<span class="tc">button</span>&gt;</code></pre>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>type</th>
-                  <th>Dato in $_POST</th>
-                  <th>Note</th>
-                </tr>
-                <tr>
-                  <td><code>text / email / password</code></td>
-                  <td>Stringa</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td><code>number</code></td>
-                  <td>Stringa numerica</td>
-                  <td>
-                    Usa <code>intval()</code> / <code>floatval()</code> in PHP.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>checkbox</code></td>
-                  <td>Il <code>value</code> o assente</td>
-                  <td>Presente in $_POST SOLO se spuntata.</td>
-                </tr>
-                <tr>
-                  <td><code>file</code></td>
-                  <td>—</td>
-                  <td>
-                    Dati in <code>$_FILES</code>. Richiede <code>enctype</code>.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>hidden</code></td>
-                  <td>Il <code>value</code></td>
-                  <td>Invisibile, per passare ID.</td>
-                </tr>
-                <tr>
-                  <td><code>submit</code></td>
-                  <td>Il <code>value</code> (se name)</td>
-                  <td>Invia il form.</td>
-                </tr>
+                  <tr>
+                    <th>type</th>
+                    <th>Dato in $_POST</th>
+                    <th>Note</th>
+                  </tr>
+                  <tr>
+                    <td><code>text / email / password</code></td>
+                    <td>Stringa</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td><code>number</code></td>
+                    <td>Stringa numerica</td>
+                    <td>
+                      Usa <code>intval()</code> / <code>floatval()</code> in
+                      PHP.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>checkbox</code></td>
+                    <td>Il <code>value</code> o assente</td>
+                    <td>Presente in $_POST SOLO se spuntata.</td>
+                  </tr>
+                  <tr>
+                    <td><code>file</code></td>
+                    <td>—</td>
+                    <td>
+                      Dati in <code>$_FILES</code>. Richiede
+                      <code>enctype</code>.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>hidden</code></td>
+                    <td>Il <code>value</code></td>
+                    <td>Invisibile, per passare ID.</td>
+                  </tr>
+                  <tr>
+                    <td><code>submit</code></td>
+                    <td>Il <code>value</code> (se name)</td>
+                    <td>Invia il form.</td>
+                  </tr>
                 </table>
               </div>
             </section>
           </section>
 
           <!-- ══════════════════ CSS ══════════════════ -->
-          <section id="s-css">
+          <section id="s-css" class="arg-block">
             <h2><span class="tag css">CSS</span> Stile base</h2>
 
             <section id="css-base">
@@ -2043,7 +2047,7 @@ textarea, select</span> {
           </section>
 
           <!-- ══════════════════ MODELLO E-R ══════════════════ -->
-          <section id="s-er">
+          <section id="s-er" class="arg-block">
             <h2><span class="tag er">E-R</span> Modello Entità-Relazione</h2>
 
             <section id="er-ciclo">
@@ -2055,59 +2059,59 @@ textarea, select</span> {
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>#</th>
-                  <th>Fase</th>
-                  <th>Descrizione</th>
-                </tr>
-                <tr>
-                  <td><code>1</code></td>
-                  <td>Studio di fattibilità</td>
-                  <td>
-                    Definisce costi delle alternative e priorità di
-                    realizzazione.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>2</code></td>
-                  <td>Raccolta e analisi dei requisiti</td>
-                  <td>
-                    Individua proprietà e funzionalità. Richiede interazione con
-                    gli utenti. Produce descrizione informale di dati e
-                    operazioni.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>3</code></td>
-                  <td>Progettazione</td>
-                  <td>
-                    Progettazione dei dati (struttura) e delle applicazioni
-                    (programmi). Possono procedere in parallelo.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>4</code></td>
-                  <td>Implementazione</td>
-                  <td>
-                    Costruzione e popolamento del DB, produzione del codice.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>5</code></td>
-                  <td>Validazione e collaudo</td>
-                  <td>
-                    Verifica corretto funzionamento in tutte le condizioni
-                    operative.
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>6</code></td>
-                  <td>Funzionamento</td>
-                  <td>
-                    Il sistema è operativo. Richiede solo gestione e
-                    manutenzione.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>#</th>
+                    <th>Fase</th>
+                    <th>Descrizione</th>
+                  </tr>
+                  <tr>
+                    <td><code>1</code></td>
+                    <td>Studio di fattibilità</td>
+                    <td>
+                      Definisce costi delle alternative e priorità di
+                      realizzazione.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>2</code></td>
+                    <td>Raccolta e analisi dei requisiti</td>
+                    <td>
+                      Individua proprietà e funzionalità. Richiede interazione
+                      con gli utenti. Produce descrizione informale di dati e
+                      operazioni.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>3</code></td>
+                    <td>Progettazione</td>
+                    <td>
+                      Progettazione dei dati (struttura) e delle applicazioni
+                      (programmi). Possono procedere in parallelo.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>4</code></td>
+                    <td>Implementazione</td>
+                    <td>
+                      Costruzione e popolamento del DB, produzione del codice.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>5</code></td>
+                    <td>Validazione e collaudo</td>
+                    <td>
+                      Verifica corretto funzionamento in tutte le condizioni
+                      operative.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>6</code></td>
+                    <td>Funzionamento</td>
+                    <td>
+                      Il sistema è operativo. Richiede solo gestione e
+                      manutenzione.
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="callout er">
@@ -2126,36 +2130,36 @@ textarea, select</span> {
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Fase</th>
-                  <th>Prodotto</th>
-                  <th>Indipendente da</th>
-                </tr>
-                <tr>
-                  <td><strong>Progettazione concettuale</strong></td>
-                  <td>Schema concettuale (diagramma E-R)</td>
-                  <td>
-                    Qualsiasi DBMS. Rappresenta il "cosa" ad alto livello di
-                    astrazione.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Progettazione logica</strong></td>
-                  <td>Schema logico (tabelle relazionali)</td>
-                  <td>
-                    Dettagli fisici. Usa tecniche di normalizzazione. Richiede
-                    conoscere il modello logico (es. relazionale) ma non il DBMS
-                    specifico.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Progettazione fisica</strong></td>
-                  <td>Schema fisico (file, indici)</td>
-                  <td>
-                    —. Dipende dal DBMS scelto. Specifica parametri fisici di
-                    memorizzazione.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Fase</th>
+                    <th>Prodotto</th>
+                    <th>Indipendente da</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Progettazione concettuale</strong></td>
+                    <td>Schema concettuale (diagramma E-R)</td>
+                    <td>
+                      Qualsiasi DBMS. Rappresenta il "cosa" ad alto livello di
+                      astrazione.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Progettazione logica</strong></td>
+                    <td>Schema logico (tabelle relazionali)</td>
+                    <td>
+                      Dettagli fisici. Usa tecniche di normalizzazione. Richiede
+                      conoscere il modello logico (es. relazionale) ma non il
+                      DBMS specifico.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Progettazione fisica</strong></td>
+                    <td>Schema fisico (file, indici)</td>
+                    <td>
+                      —. Dipende dal DBMS scelto. Specifica parametri fisici di
+                      memorizzazione.
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="callout tip">
@@ -2235,30 +2239,31 @@ textarea, select</span> {
               <h3 class="sub">Tipi di relazione</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Descrizione</th>
-                  <th>Esempio</th>
-                </tr>
-                <tr>
-                  <td><code>Binaria</code></td>
-                  <td>Coinvolge 2 entità (il caso più comune)</td>
-                  <td>Impiegato — Residenza — Città</td>
-                </tr>
-                <tr>
-                  <td><code>Ricorsiva</code></td>
-                  <td>
-                    Un'entità collegata a se stessa. Richiede ruoli sulle linee.
-                  </td>
-                  <td>
-                    Impiegato — Collega — Impiegato (Successore/Predecessore)
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>N-aria (ternaria)</code></td>
-                  <td>Coinvolge più di 2 entità</td>
-                  <td>Fornitore — Fornitura — Prodotto — Dipartimento</td>
-                </tr>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Descrizione</th>
+                    <th>Esempio</th>
+                  </tr>
+                  <tr>
+                    <td><code>Binaria</code></td>
+                    <td>Coinvolge 2 entità (il caso più comune)</td>
+                    <td>Impiegato — Residenza — Città</td>
+                  </tr>
+                  <tr>
+                    <td><code>Ricorsiva</code></td>
+                    <td>
+                      Un'entità collegata a se stessa. Richiede ruoli sulle
+                      linee.
+                    </td>
+                    <td>
+                      Impiegato — Collega — Impiegato (Successore/Predecessore)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>N-aria (ternaria)</code></td>
+                    <td>Coinvolge più di 2 entità</td>
+                    <td>Fornitore — Fornitura — Prodotto — Dipartimento</td>
+                  </tr>
                 </table>
               </div>
               <div class="callout warn">
@@ -2321,57 +2326,57 @@ textarea, select</span> {
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Valore</th>
-                  <th>Significato</th>
-                </tr>
-                <tr>
-                  <td><code>min = 0</code></td>
-                  <td>
-                    Partecipazione <strong>opzionale</strong> (l'entità può non
-                    partecipare)
-                  </td>
-                </tr>
-                <tr>
-                  <td><code>min = 1</code></td>
-                  <td>Partecipazione <strong>obbligatoria</strong></td>
-                </tr>
-                <tr>
-                  <td><code>max = 1</code></td>
-                  <td>Al più una occorrenza della relazione</td>
-                </tr>
-                <tr>
-                  <td><code>max = N</code></td>
-                  <td>Numero arbitrario di occorrenze</td>
-                </tr>
+                  <tr>
+                    <th>Valore</th>
+                    <th>Significato</th>
+                  </tr>
+                  <tr>
+                    <td><code>min = 0</code></td>
+                    <td>
+                      Partecipazione <strong>opzionale</strong> (l'entità può
+                      non partecipare)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><code>min = 1</code></td>
+                    <td>Partecipazione <strong>obbligatoria</strong></td>
+                  </tr>
+                  <tr>
+                    <td><code>max = 1</code></td>
+                    <td>Al più una occorrenza della relazione</td>
+                  </tr>
+                  <tr>
+                    <td><code>max = N</code></td>
+                    <td>Numero arbitrario di occorrenze</td>
+                  </tr>
                 </table>
               </div>
               <h3 class="sub">Tipi di corrispondenza (in base a max)</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Cardinalità massime</th>
-                  <th>Esempio</th>
-                </tr>
-                <tr>
-                  <td><strong>Uno a uno (1:1)</strong></td>
-                  <td>max=1 per entrambe</td>
-                  <td>Vendita tra Ordine e Fattura</td>
-                </tr>
-                <tr>
-                  <td><strong>Uno a molti (1:N)</strong></td>
-                  <td>max=1 per una, max=N per l'altra</td>
-                  <td>
-                    Residenza: una persona in una sola città, una città con
-                    molti residenti
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Molti a molti (N:M)</strong></td>
-                  <td>max=N per entrambe</td>
-                  <td>Prenotazione tra Cliente e Camera</td>
-                </tr>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Cardinalità massime</th>
+                    <th>Esempio</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Uno a uno (1:1)</strong></td>
+                    <td>max=1 per entrambe</td>
+                    <td>Vendita tra Ordine e Fattura</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Uno a molti (1:N)</strong></td>
+                    <td>max=1 per una, max=N per l'altra</td>
+                    <td>
+                      Residenza: una persona in una sola città, una città con
+                      molti residenti
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Molti a molti (N:M)</strong></td>
+                    <td>max=N per entrambe</td>
+                    <td>Prenotazione tra Cliente e Camera</td>
+                  </tr>
                 </table>
               </div>
               <div class="er-diagram">
@@ -2400,35 +2405,36 @@ textarea, select</span> {
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Descrizione</th>
-                  <th>Esempio</th>
-                </tr>
-                <tr>
-                  <td><strong>Identificatore interno</strong> (chiave)</td>
-                  <td>
-                    Uno o più attributi propri dell'entità. Ogni attributo deve
-                    avere cardinalità (1,1).
-                  </td>
-                  <td>
-                    <code>Targa</code> per <code>Automobile</code>;<br />{Nome,
-                    Cognome, DataNascita} per <code>Persona</code>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Identificatore esterno</strong></td>
-                  <td>
-                    Usa anche un'altra entità. Possibile solo se l'entità
-                    partecipa alla relazione con cardinalità (1,1). Non si
-                    possono creare cicli.
-                  </td>
-                  <td>
-                    <code>Matricola + Università</code> per
-                    <code>Studente</code> (matricole di università diverse
-                    possono coincidere)
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Descrizione</th>
+                    <th>Esempio</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Identificatore interno</strong> (chiave)</td>
+                    <td>
+                      Uno o più attributi propri dell'entità. Ogni attributo
+                      deve avere cardinalità (1,1).
+                    </td>
+                    <td>
+                      <code>Targa</code> per
+                      <code>Automobile</code>;<br />{Nome, Cognome, DataNascita}
+                      per <code>Persona</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Identificatore esterno</strong></td>
+                    <td>
+                      Usa anche un'altra entità. Possibile solo se l'entità
+                      partecipa alla relazione con cardinalità (1,1). Non si
+                      possono creare cicli.
+                    </td>
+                    <td>
+                      <code>Matricola + Università</code> per
+                      <code>Studente</code> (matricole di università diverse
+                      possono coincidere)
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="callout er">
@@ -2505,53 +2511,53 @@ textarea, select</span> {
               <h3 class="sub">Classificazione delle generalizzazioni</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Proprietà</th>
-                  <th>Totale</th>
-                  <th>Parziale</th>
-                </tr>
-                <tr>
-                  <td>Definizione</td>
-                  <td>Ogni occorrenza del genitore è almeno in un figlio</td>
-                  <td>
-                    Possono esistere occorrenze del genitore non in nessun
-                    figlio
-                  </td>
-                </tr>
-                <tr>
-                  <td>Rappresentazione</td>
-                  <td>Freccia con tratto pieno</td>
-                  <td>Freccia normale</td>
-                </tr>
-                <tr>
-                  <td>Esempio</td>
-                  <td>Persona → Uomo, Donna (tutti sono uno dei due)</td>
-                  <td>
-                    Professionista → Ingegnere, Medico (esistono altri
-                    professionisti)
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Proprietà</th>
+                    <th>Totale</th>
+                    <th>Parziale</th>
+                  </tr>
+                  <tr>
+                    <td>Definizione</td>
+                    <td>Ogni occorrenza del genitore è almeno in un figlio</td>
+                    <td>
+                      Possono esistere occorrenze del genitore non in nessun
+                      figlio
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Rappresentazione</td>
+                    <td>Freccia con tratto pieno</td>
+                    <td>Freccia normale</td>
+                  </tr>
+                  <tr>
+                    <td>Esempio</td>
+                    <td>Persona → Uomo, Donna (tutti sono uno dei due)</td>
+                    <td>
+                      Professionista → Ingegnere, Medico (esistono altri
+                      professionisti)
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Proprietà</th>
-                  <th>Esclusiva</th>
-                  <th>Sovrapposta</th>
-                </tr>
-                <tr>
-                  <td>Definizione</td>
-                  <td>Ogni occorrenza del genitore è al più in un figlio</td>
-                  <td>Un'occorrenza può appartenere a più figli</td>
-                </tr>
-                <tr>
-                  <td>Esempio</td>
-                  <td>Persona → Uomo, Donna (si è o uno o l'altra)</td>
-                  <td>
-                    Persona → Studente, Lavoratore (si può essere entrambi)
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Proprietà</th>
+                    <th>Esclusiva</th>
+                    <th>Sovrapposta</th>
+                  </tr>
+                  <tr>
+                    <td>Definizione</td>
+                    <td>Ogni occorrenza del genitore è al più in un figlio</td>
+                    <td>Un'occorrenza può appartenere a più figli</td>
+                  </tr>
+                  <tr>
+                    <td>Esempio</td>
+                    <td>Persona → Uomo, Donna (si è o uno o l'altra)</td>
+                    <td>
+                      Persona → Studente, Lavoratore (si può essere entrambi)
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="callout tip">
@@ -2583,70 +2589,70 @@ textarea, select</span> {
               <p>Due tabelle che documentano entità e relazioni:</p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Entità</th>
-                  <th>Descrizione</th>
-                  <th>Attributi</th>
-                  <th>Identificatore</th>
-                </tr>
-                <tr>
-                  <td>Impiegato</td>
-                  <td>Impiegato che lavora nell'azienda</td>
-                  <td>Codice, Cognome, Stipendio, Età</td>
-                  <td>Codice</td>
-                </tr>
-                <tr>
-                  <td>Progetto</td>
-                  <td>Progetti aziendali</td>
-                  <td>Nome, Budget, Data Consegna</td>
-                  <td>Nome</td>
-                </tr>
-                <tr>
-                  <td>Dipartimento</td>
-                  <td>Dipartimenti delle sedi</td>
-                  <td>Telefono, Nome</td>
-                  <td>Nome, Sede</td>
-                </tr>
-                <tr>
-                  <td>Sede</td>
-                  <td>Sede dell'azienda in una città</td>
-                  <td>Città, Indirizzo (Via, N., CAP)</td>
-                  <td>Città</td>
-                </tr>
+                  <tr>
+                    <th>Entità</th>
+                    <th>Descrizione</th>
+                    <th>Attributi</th>
+                    <th>Identificatore</th>
+                  </tr>
+                  <tr>
+                    <td>Impiegato</td>
+                    <td>Impiegato che lavora nell'azienda</td>
+                    <td>Codice, Cognome, Stipendio, Età</td>
+                    <td>Codice</td>
+                  </tr>
+                  <tr>
+                    <td>Progetto</td>
+                    <td>Progetti aziendali</td>
+                    <td>Nome, Budget, Data Consegna</td>
+                    <td>Nome</td>
+                  </tr>
+                  <tr>
+                    <td>Dipartimento</td>
+                    <td>Dipartimenti delle sedi</td>
+                    <td>Telefono, Nome</td>
+                    <td>Nome, Sede</td>
+                  </tr>
+                  <tr>
+                    <td>Sede</td>
+                    <td>Sede dell'azienda in una città</td>
+                    <td>Città, Indirizzo (Via, N., CAP)</td>
+                    <td>Città</td>
+                  </tr>
                 </table>
               </div>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Relazione</th>
-                  <th>Descrizione</th>
-                  <th>Entità coinvolte</th>
-                  <th>Attributi</th>
-                </tr>
-                <tr>
-                  <td>Direzione</td>
-                  <td>Associa un dip. al suo direttore</td>
-                  <td>Impiegato (0,1), Dipartimento (1,1)</td>
-                  <td>—</td>
-                </tr>
-                <tr>
-                  <td>Afferenza</td>
-                  <td>Associa un impiegato al suo dip.</td>
-                  <td>Impiegato (0,1), Dipartimento (1,N)</td>
-                  <td>Data afferenza</td>
-                </tr>
-                <tr>
-                  <td>Partecipazione</td>
-                  <td>Associa impiegati ai progetti</td>
-                  <td>Impiegato (0,N), Progetto (1,N)</td>
-                  <td>Data inizio</td>
-                </tr>
-                <tr>
-                  <td>Composizione</td>
-                  <td>Associa una sede ai suoi dip.</td>
-                  <td>Dipartimento (1,1), Sede (1,N)</td>
-                  <td>—</td>
-                </tr>
+                  <tr>
+                    <th>Relazione</th>
+                    <th>Descrizione</th>
+                    <th>Entità coinvolte</th>
+                    <th>Attributi</th>
+                  </tr>
+                  <tr>
+                    <td>Direzione</td>
+                    <td>Associa un dip. al suo direttore</td>
+                    <td>Impiegato (0,1), Dipartimento (1,1)</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td>Afferenza</td>
+                    <td>Associa un impiegato al suo dip.</td>
+                    <td>Impiegato (0,1), Dipartimento (1,N)</td>
+                    <td>Data afferenza</td>
+                  </tr>
+                  <tr>
+                    <td>Partecipazione</td>
+                    <td>Associa impiegati ai progetti</td>
+                    <td>Impiegato (0,N), Progetto (1,N)</td>
+                    <td>Data inizio</td>
+                  </tr>
+                  <tr>
+                    <td>Composizione</td>
+                    <td>Associa una sede ai suoi dip.</td>
+                    <td>Dipartimento (1,1), Sede (1,N)</td>
+                    <td>—</td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -2659,42 +2665,43 @@ textarea, select</span> {
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Struttura</th>
-                  <th>Esempio</th>
-                </tr>
-                <tr>
-                  <td><strong>Descrittive</strong></td>
-                  <td>Definizione in linguaggio naturale (glossario)</td>
-                  <td>"Impiegato = persona che lavora nell'azienda"</td>
-                </tr>
-                <tr>
-                  <td><strong>Vincoli di integrità (RV)</strong></td>
-                  <td>
-                    <code
-                      >&lt;concetto&gt; deve/non deve &lt;espressione&gt;</code
-                    >
-                  </td>
-                  <td>
-                    RV1: Il direttore di un dipartimento deve afferire a tale
-                    dipartimento.<br />RV2: Un impiegato non deve avere
-                    stipendio maggiore del proprio direttore.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Derivazioni (RD)</strong></td>
-                  <td>
-                    <code
-                      >&lt;concetto&gt; si ottiene &lt;operazione su
-                      concetti&gt;</code
-                    >
-                  </td>
-                  <td>
-                    RD1: Il numero degli impiegati di un dipartimento si ottiene
-                    contando quelli che vi afferiscono.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Struttura</th>
+                    <th>Esempio</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Descrittive</strong></td>
+                    <td>Definizione in linguaggio naturale (glossario)</td>
+                    <td>"Impiegato = persona che lavora nell'azienda"</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vincoli di integrità (RV)</strong></td>
+                    <td>
+                      <code
+                        >&lt;concetto&gt; deve/non deve
+                        &lt;espressione&gt;</code
+                      >
+                    </td>
+                    <td>
+                      RV1: Il direttore di un dipartimento deve afferire a tale
+                      dipartimento.<br />RV2: Un impiegato non deve avere
+                      stipendio maggiore del proprio direttore.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Derivazioni (RD)</strong></td>
+                    <td>
+                      <code
+                        >&lt;concetto&gt; si ottiene &lt;operazione su
+                        concetti&gt;</code
+                      >
+                    </td>
+                    <td>
+                      RD1: Il numero degli impiegati di un dipartimento si
+                      ottiene contando quelli che vi afferiscono.
+                    </td>
+                  </tr>
                 </table>
               </div>
               <h3 class="sub">Implementazione delle regole</h3>
@@ -2720,7 +2727,7 @@ textarea, select</span> {
           </section>
 
           <!-- ══════════════════ FULL PROJECT ══════════════════ -->
-          <section id="s-full">
+          <section id="s-full" class="arg-block">
             <h2>🗂 Struttura progetto con auth</h2>
             <pre><code><span class="ll">file tree</span>progetto/
 ├── login.php            ← form login + verifica credenziali
@@ -2771,306 +2778,314 @@ textarea, select</span> {
           </section>
 
           <!-- ══════════════════ QUICK REF ══════════════════ -->
-          <section id="s-ref">
+          <section id="s-ref" class="arg-block">
             <h2>⚡ Quick reference card</h2>
             <div class="table-wrapper">
               <table>
-              <tr>
-                <th>Cosa</th>
-                <th>Da ricordare</th>
-              </tr>
-              <tr>
-                <td><code>&lt;?= ?&gt;</code></td>
-                <td>
-                  = <code>&lt;?php echo ... ?&gt;</code>. Echo automatico.
-                </td>
-              </tr>
-              <tr>
-                <td><code>require</code></td>
-                <td>Errore fatale se manca. Usa per DB e header.</td>
-              </tr>
-              <tr>
-                <td><code>isset()</code></td>
-                <td>
-                  Esiste E non è null. Base per leggere <code>$_POST</code>.
-                </td>
-              </tr>
-              <tr>
-                <td><code>$_POST['x']</code></td>
-                <td>Solo se l'input ha <code>name="x"</code>.</td>
-              </tr>
-              <tr>
-                <td>Checkbox in POST</td>
-                <td>Presente SOLO se spuntata → usa <code>isset()</code>.</td>
-              </tr>
-              <tr>
-                <td><code>enctype</code></td>
-                <td>
-                  Solo nei form con file. Valore:
-                  <code>multipart/form-data</code>.
-                </td>
-              </tr>
-              <tr>
-                <td>Prepared stmt</td>
-                <td>
-                  <code>prepare()</code> + <code>execute([':x'=>$val])</code>.
-                  Previene SQL injection.
-                </td>
-              </tr>
-              <tr>
-                <td><code>fetchAll()</code></td>
-                <td>
-                  Tutte le righe come array. Vuoto <code>[]</code> se 0
-                  risultati.
-                </td>
-              </tr>
-              <tr>
-                <td><code>fetch()</code></td>
-                <td>Una riga. <code>false</code> se non trovata.</td>
-              </tr>
-              <tr>
-                <td><code>lastInsertId()</code></td>
-                <td>
-                  Chiamato su <code>$pdo</code>, non su <code>$stmt</code>.
-                </td>
-              </tr>
-              <tr>
-                <td><code>rowCount()</code></td>
-                <td>Chiamato su <code>$stmt</code> dopo UPDATE/DELETE.</td>
-              </tr>
-              <tr>
-                <td><code>session_start()</code></td>
-                <td>
-                  PRIMA di qualsiasi output. In ogni file che usa sessioni.
-                </td>
-              </tr>
-              <tr>
-                <td>Logout</td>
-                <td>
-                  <code>$_SESSION = []</code> poi
-                  <code>session_destroy()</code>.
-                </td>
-              </tr>
-              <tr>
-                <td><code>password_hash()</code></td>
-                <td>
-                  Alla registrazione. Algoritmo: <code>PASSWORD_DEFAULT</code>.
-                </td>
-              </tr>
-              <tr>
-                <td><code>password_verify()</code></td>
-                <td>Al login. Ritorna <code>true/false</code>.</td>
-              </tr>
-              <tr>
-                <td>Guard pattern</td>
-                <td>
-                  <code
-                    >if (!isset($_SESSION['id'])) {
-                    header('Location:login.php'); exit(); }</code
-                  >
-                </td>
-              </tr>
-              <tr>
-                <td>BLOB img</td>
-                <td>
-                  Script + <code>header("Content-Type: image/jpeg")</code> +
-                  <code>echo $bytes</code>. Usa in
-                  <code>src="img.php?id=X"</code>.
-                </td>
-              </tr>
-              <tr>
-                <td>UPDATE/DELETE SQL</td>
-                <td>❌ Senza WHERE modifica/cancella TUTTO.</td>
-              </tr>
-              <tr>
-                <td>JOIN</td>
-                <td>INNER = solo match. LEFT = tutti + NULL dove manca.</td>
-              </tr>
-              <tr>
-                <td><code>margin: 0 auto</code></td>
-                <td>
-                  Centra orizzontalmente. Richiede <code>max-width</code>.
-                </td>
-              </tr>
-              <tr>
-                <td>E-R: Entità</td>
-                <td>
-                  Rettangolo. Rappresenta una classe di oggetti con esistenza
-                  autonoma.
-                </td>
-              </tr>
-              <tr>
-                <td>E-R: Relazione</td>
-                <td>Rombo. Legame logico tra entità. No ennuple ripetute.</td>
-              </tr>
-              <tr>
-                <td>E-R: Cardinalità</td>
-                <td>(min,max). 0=opzionale, 1=obbligatorio, N=molti.</td>
-              </tr>
-              <tr>
-                <td>E-R: Id. interno</td>
-                <td>
-                  Attributo(i) che identificano univocamente le occorrenze.
-                </td>
-              </tr>
-              <tr>
-                <td>E-R: Id. esterno</td>
-                <td>
-                  Serve altra entità. Possibile solo con cardinalità (1,1).
-                </td>
-              </tr>
-              <tr>
-                <td>E-R: Generalizzazione</td>
-                <td>Ereditarietà. Totale/parziale × esclusiva/sovrapposta.</td>
-              </tr>
-              <tr>
-                <td>E-R: Regola vincolo</td>
-                <td>
-                  <code>&lt;concetto&gt; deve/non deve &lt;expr&gt;</code>
-                </td>
-              </tr>
-              <tr>
-                <td>E-R: Regola derivazione</td>
-                <td>
-                  <code>&lt;concetto&gt; si ottiene &lt;operazione&gt;</code>
-                </td>
-              </tr>
-              <tr>
-                <td>Normalizzazione</td>
-                <td>
-                  Verifica qualità dello schema. Elimina ridondanze e anomalie.
-                </td>
-              </tr>
-              <tr>
-                <td>BCNF</td>
-                <td>
-                  Per ogni FD non banale X → A, X deve essere superchiave.
-                </td>
-              </tr>
-              <tr>
-                <td>3NF</td>
-                <td>
-                  Meno restrittiva di BCNF; ammette A se è attributo primo.
-                  Conserva sempre FD.
-                </td>
-              </tr>
-              <tr>
-                <td>Lossless Join</td>
-                <td>
-                  Join delle proiezioni = relazione originaria. Intersezione X0
-                  deve essere chiave.
-                </td>
-              </tr>
-              <tr>
-                <td>Fasi progettazione DB</td>
-                <td>
-                  Concettuale (E-R) → Logica (tabelle) → Fisica (file/indici)
-                </td>
-              </tr>
-              <tr>
-                <td>Relazione</td>
-                <td>
-                  Sottoinsieme del prodotto cartesiano D₁×…×Dₙ. Tuple distinte,
-                  no ordine.
-                </td>
-              </tr>
-              <tr>
-                <td>Chiave primaria</td>
-                <td>
-                  Chiave minimale su cui i NULL sono vietati. Sottolineata nello
-                  schema.
-                </td>
-              </tr>
-              <tr>
-                <td>Foreign key</td>
-                <td>
-                  Valori in R₁.X devono comparire come chiave primaria in R₂ (o
-                  essere NULL).
-                </td>
-              </tr>
-              <tr>
-                <td>Prog. Logica: fasi</td>
-                <td>
-                  Ristrutturazione E-R → Traduzione al modello relazionale
-                </td>
-              </tr>
-              <tr>
-                <td>Elim. generaliz. (1)</td>
-                <td>
-                  Figlie nel genitore + attributo tipo. No ordine distinto tra
-                  E₁/E₂.
-                </td>
-              </tr>
-              <tr>
-                <td>Elim. generaliz. (2)</td>
-                <td>Genitore nelle figlie. Solo se totale. No NULL.</td>
-              </tr>
-              <tr>
-                <td>Elim. generaliz. (3)</td>
-                <td>
-                  Associazioni 1:1 + vincoli. Entità più piccole = accesso
-                  fisico migliore.
-                </td>
-              </tr>
-              <tr>
-                <td>Assoc. N:M → SQL</td>
-                <td>
-                  Relazione separata con chiave = coppia di identificatori delle
-                  entità.
-                </td>
-              </tr>
-              <tr>
-                <td>Assoc. 1:N → SQL</td>
-                <td>
-                  Chiave dell'entità "1" diventa attributo dell'entità "N". No
-                  relazione separata.
-                </td>
-              </tr>
-              <tr>
-                <td>σ (selezione)</td>
-                <td>Filtra righe. Corrisponde a WHERE in SQL.</td>
-              </tr>
-              <tr>
-                <td>π (proiezione)</td>
-                <td>
-                  Seleziona colonne. Possibile riduzione tuple per duplicati.
-                </td>
-              </tr>
-              <tr>
-                <td>ρ (ridenominazione)</td>
-                <td>
-                  Cambia nomi attributi. Necessaria prima di unione/join con
-                  nomi diversi.
-                </td>
-              </tr>
-              <tr>
-                <td>⨝ (join naturale)</td>
-                <td>Combina tuple con valori uguali sugli attributi comuni.</td>
-              </tr>
-              <tr>
-                <td>⨝F (theta-join)</td>
-                <td>= σF(r₁ × r₂). Usa quando non ci sono attributi comuni.</td>
-              </tr>
-              <tr>
-                <td>Outer join</td>
-                <td>
-                  LEFT/RIGHT/FULL — include tuple senza controparte estese con
-                  NULL.
-                </td>
-              </tr>
-              <tr>
-                <td>Quantif. universale</td>
-                <td>
-                  Non esiste in algebra rel. → doppia negazione con differenza
-                  (−).
-                </td>
-              </tr>
+                <tr>
+                  <th>Cosa</th>
+                  <th>Da ricordare</th>
+                </tr>
+                <tr>
+                  <td><code>&lt;?= ?&gt;</code></td>
+                  <td>
+                    = <code>&lt;?php echo ... ?&gt;</code>. Echo automatico.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>require</code></td>
+                  <td>Errore fatale se manca. Usa per DB e header.</td>
+                </tr>
+                <tr>
+                  <td><code>isset()</code></td>
+                  <td>
+                    Esiste E non è null. Base per leggere <code>$_POST</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>$_POST['x']</code></td>
+                  <td>Solo se l'input ha <code>name="x"</code>.</td>
+                </tr>
+                <tr>
+                  <td>Checkbox in POST</td>
+                  <td>Presente SOLO se spuntata → usa <code>isset()</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>enctype</code></td>
+                  <td>
+                    Solo nei form con file. Valore:
+                    <code>multipart/form-data</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Prepared stmt</td>
+                  <td>
+                    <code>prepare()</code> + <code>execute([':x'=>$val])</code>.
+                    Previene SQL injection.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>fetchAll()</code></td>
+                  <td>
+                    Tutte le righe come array. Vuoto <code>[]</code> se 0
+                    risultati.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>fetch()</code></td>
+                  <td>Una riga. <code>false</code> se non trovata.</td>
+                </tr>
+                <tr>
+                  <td><code>lastInsertId()</code></td>
+                  <td>
+                    Chiamato su <code>$pdo</code>, non su <code>$stmt</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>rowCount()</code></td>
+                  <td>Chiamato su <code>$stmt</code> dopo UPDATE/DELETE.</td>
+                </tr>
+                <tr>
+                  <td><code>session_start()</code></td>
+                  <td>
+                    PRIMA di qualsiasi output. In ogni file che usa sessioni.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Logout</td>
+                  <td>
+                    <code>$_SESSION = []</code> poi
+                    <code>session_destroy()</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>password_hash()</code></td>
+                  <td>
+                    Alla registrazione. Algoritmo:
+                    <code>PASSWORD_DEFAULT</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>password_verify()</code></td>
+                  <td>Al login. Ritorna <code>true/false</code>.</td>
+                </tr>
+                <tr>
+                  <td>Guard pattern</td>
+                  <td>
+                    <code
+                      >if (!isset($_SESSION['id'])) {
+                      header('Location:login.php'); exit(); }</code
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>BLOB img</td>
+                  <td>
+                    Script + <code>header("Content-Type: image/jpeg")</code> +
+                    <code>echo $bytes</code>. Usa in
+                    <code>src="img.php?id=X"</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>UPDATE/DELETE SQL</td>
+                  <td>❌ Senza WHERE modifica/cancella TUTTO.</td>
+                </tr>
+                <tr>
+                  <td>JOIN</td>
+                  <td>INNER = solo match. LEFT = tutti + NULL dove manca.</td>
+                </tr>
+                <tr>
+                  <td><code>margin: 0 auto</code></td>
+                  <td>
+                    Centra orizzontalmente. Richiede <code>max-width</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-R: Entità</td>
+                  <td>
+                    Rettangolo. Rappresenta una classe di oggetti con esistenza
+                    autonoma.
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-R: Relazione</td>
+                  <td>Rombo. Legame logico tra entità. No ennuple ripetute.</td>
+                </tr>
+                <tr>
+                  <td>E-R: Cardinalità</td>
+                  <td>(min,max). 0=opzionale, 1=obbligatorio, N=molti.</td>
+                </tr>
+                <tr>
+                  <td>E-R: Id. interno</td>
+                  <td>
+                    Attributo(i) che identificano univocamente le occorrenze.
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-R: Id. esterno</td>
+                  <td>
+                    Serve altra entità. Possibile solo con cardinalità (1,1).
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-R: Generalizzazione</td>
+                  <td>
+                    Ereditarietà. Totale/parziale × esclusiva/sovrapposta.
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-R: Regola vincolo</td>
+                  <td>
+                    <code>&lt;concetto&gt; deve/non deve &lt;expr&gt;</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-R: Regola derivazione</td>
+                  <td>
+                    <code>&lt;concetto&gt; si ottiene &lt;operazione&gt;</code>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Normalizzazione</td>
+                  <td>
+                    Verifica qualità dello schema. Elimina ridondanze e
+                    anomalie.
+                  </td>
+                </tr>
+                <tr>
+                  <td>BCNF</td>
+                  <td>
+                    Per ogni FD non banale X → A, X deve essere superchiave.
+                  </td>
+                </tr>
+                <tr>
+                  <td>3NF</td>
+                  <td>
+                    Meno restrittiva di BCNF; ammette A se è attributo primo.
+                    Conserva sempre FD.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lossless Join</td>
+                  <td>
+                    Join delle proiezioni = relazione originaria. Intersezione
+                    X0 deve essere chiave.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fasi progettazione DB</td>
+                  <td>
+                    Concettuale (E-R) → Logica (tabelle) → Fisica (file/indici)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Relazione</td>
+                  <td>
+                    Sottoinsieme del prodotto cartesiano D₁×…×Dₙ. Tuple
+                    distinte, no ordine.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Chiave primaria</td>
+                  <td>
+                    Chiave minimale su cui i NULL sono vietati. Sottolineata
+                    nello schema.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Foreign key</td>
+                  <td>
+                    Valori in R₁.X devono comparire come chiave primaria in R₂
+                    (o essere NULL).
+                  </td>
+                </tr>
+                <tr>
+                  <td>Prog. Logica: fasi</td>
+                  <td>
+                    Ristrutturazione E-R → Traduzione al modello relazionale
+                  </td>
+                </tr>
+                <tr>
+                  <td>Elim. generaliz. (1)</td>
+                  <td>
+                    Figlie nel genitore + attributo tipo. No ordine distinto tra
+                    E₁/E₂.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Elim. generaliz. (2)</td>
+                  <td>Genitore nelle figlie. Solo se totale. No NULL.</td>
+                </tr>
+                <tr>
+                  <td>Elim. generaliz. (3)</td>
+                  <td>
+                    Associazioni 1:1 + vincoli. Entità più piccole = accesso
+                    fisico migliore.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Assoc. N:M → SQL</td>
+                  <td>
+                    Relazione separata con chiave = coppia di identificatori
+                    delle entità.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Assoc. 1:N → SQL</td>
+                  <td>
+                    Chiave dell'entità "1" diventa attributo dell'entità "N". No
+                    relazione separata.
+                  </td>
+                </tr>
+                <tr>
+                  <td>σ (selezione)</td>
+                  <td>Filtra righe. Corrisponde a WHERE in SQL.</td>
+                </tr>
+                <tr>
+                  <td>π (proiezione)</td>
+                  <td>
+                    Seleziona colonne. Possibile riduzione tuple per duplicati.
+                  </td>
+                </tr>
+                <tr>
+                  <td>ρ (ridenominazione)</td>
+                  <td>
+                    Cambia nomi attributi. Necessaria prima di unione/join con
+                    nomi diversi.
+                  </td>
+                </tr>
+                <tr>
+                  <td>⨝ (join naturale)</td>
+                  <td>
+                    Combina tuple con valori uguali sugli attributi comuni.
+                  </td>
+                </tr>
+                <tr>
+                  <td>⨝F (theta-join)</td>
+                  <td>
+                    = σF(r₁ × r₂). Usa quando non ci sono attributi comuni.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Outer join</td>
+                  <td>
+                    LEFT/RIGHT/FULL — include tuple senza controparte estese con
+                    NULL.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Quantif. universale</td>
+                  <td>
+                    Non esiste in algebra rel. → doppia negazione con differenza
+                    (−).
+                  </td>
+                </tr>
               </table>
             </div>
           </section>
 
           <!-- ══════════ MODELLO RELAZIONALE ══════════ -->
-          <section id="s-rel">
+          <section id="s-rel" class="arg-block">
             <h2><span class="tag rel">REL</span> Modello Relazionale</h2>
 
             <section id="rel-intro">
@@ -3084,49 +3099,51 @@ textarea, select</span> {
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Concetto</th>
-                  <th>Definizione</th>
-                </tr>
-                <tr>
-                  <td><strong>Prodotto cartesiano</strong></td>
-                  <td>
-                    D₁ × D₂ × … × Dₙ — tutte le n-uple possibili dai domini.
-                    <em>Grado</em> = numero di componenti.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Relazione matematica</strong></td>
-                  <td>
-                    Sottoinsieme del prodotto cartesiano. <em>Cardinalità</em> =
-                    numero di n-uple.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Relazione nel mod. rel.</strong></td>
-                  <td>
-                    Come sopra, ma con attributi (non posizionale): ogni colonna
-                    ha un nome.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Schema di relazione</strong></td>
-                  <td>
-                    R(X) — nome R + insieme attributi X. Esempio:
-                    <code>Studenti(Matricola, Cognome, Nome, DataNascita)</code>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Istanza di relazione</strong></td>
-                  <td>L'insieme effettivo di tuple in un dato momento.</td>
-                </tr>
-                <tr>
-                  <td><strong>Schema di base di dati</strong></td>
-                  <td>
-                    Insieme di schemi di relazione: R = {R₁(X₁), R₂(X₂), …,
-                    Rₙ(Xₙ)}
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Concetto</th>
+                    <th>Definizione</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Prodotto cartesiano</strong></td>
+                    <td>
+                      D₁ × D₂ × … × Dₙ — tutte le n-uple possibili dai domini.
+                      <em>Grado</em> = numero di componenti.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Relazione matematica</strong></td>
+                    <td>
+                      Sottoinsieme del prodotto cartesiano.
+                      <em>Cardinalità</em> = numero di n-uple.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Relazione nel mod. rel.</strong></td>
+                    <td>
+                      Come sopra, ma con attributi (non posizionale): ogni
+                      colonna ha un nome.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Schema di relazione</strong></td>
+                    <td>
+                      R(X) — nome R + insieme attributi X. Esempio:
+                      <code
+                        >Studenti(Matricola, Cognome, Nome, DataNascita)</code
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Istanza di relazione</strong></td>
+                    <td>L'insieme effettivo di tuple in un dato momento.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Schema di base di dati</strong></td>
+                    <td>
+                      Insieme di schemi di relazione: R = {R₁(X₁), R₂(X₂), …,
+                      Rₙ(Xₙ)}
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="callout rel">
@@ -3173,31 +3190,31 @@ Juventus       | Roma               | 1        | 2</code></pre>
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Vantaggio</th>
-                  <th>Spiegazione</th>
-                </tr>
-                <tr>
-                  <td>Indipendenza fisica</td>
-                  <td>
-                    La rappresentazione logica (valori) non fa riferimento a
-                    quella fisica, che può cambiare nel tempo.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Semplicità di trasferimento</td>
-                  <td>
-                    I dati sono auto-contenuti; non ci sono puntatori con
-                    significato locale al sistema.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Solo dati rilevanti</td>
-                  <td>
-                    I puntatori sono aspetti realizzativi non significativi per
-                    l'applicazione.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Vantaggio</th>
+                    <th>Spiegazione</th>
+                  </tr>
+                  <tr>
+                    <td>Indipendenza fisica</td>
+                    <td>
+                      La rappresentazione logica (valori) non fa riferimento a
+                      quella fisica, che può cambiare nel tempo.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Semplicità di trasferimento</td>
+                    <td>
+                      I dati sono auto-contenuti; non ci sono puntatori con
+                      significato locale al sistema.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Solo dati rilevanti</td>
+                    <td>
+                      I puntatori sono aspetti realizzativi non significativi
+                      per l'applicazione.
+                    </td>
+                  </tr>
                 </table>
               </div>
               <pre><code><span class="ll">schema</span>Studenti (Matricola, Cognome, Nome, DataNascita)
@@ -3214,28 +3231,28 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Significato</th>
-                  <th>Esempio</th>
-                </tr>
-                <tr>
-                  <td>Valore <strong>sconosciuto</strong></td>
-                  <td>Il valore esiste ma non è disponibile</td>
-                  <td>
-                    Firenze ha una prefettura ma non ne conosciamo l'indirizzo
-                  </td>
-                </tr>
-                <tr>
-                  <td>Valore <strong>inesistente</strong></td>
-                  <td>L'attributo non è applicabile per quella tupla</td>
-                  <td>Tivoli non è capoluogo → non ha prefettura</td>
-                </tr>
-                <tr>
-                  <td><strong>Senza informazione</strong></td>
-                  <td>Non sappiamo se esiste né il suo valore</td>
-                  <td>Provincia di nuova istituzione — status ignoto</td>
-                </tr>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Significato</th>
+                    <th>Esempio</th>
+                  </tr>
+                  <tr>
+                    <td>Valore <strong>sconosciuto</strong></td>
+                    <td>Il valore esiste ma non è disponibile</td>
+                    <td>
+                      Firenze ha una prefettura ma non ne conosciamo l'indirizzo
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Valore <strong>inesistente</strong></td>
+                    <td>L'attributo non è applicabile per quella tupla</td>
+                    <td>Tivoli non è capoluogo → non ha prefettura</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Senza informazione</strong></td>
+                    <td>Non sappiamo se esiste né il suo valore</td>
+                    <td>Provincia di nuova istituzione — status ignoto</td>
+                  </tr>
                 </table>
               </div>
               <div class="callout warn">
@@ -3258,31 +3275,33 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Definizione</th>
-                  <th>Esempio</th>
-                </tr>
-                <tr>
-                  <td><strong>Vincolo di dominio</strong></td>
-                  <td>Restrizione sui valori di un singolo attributo</td>
-                  <td><code>Voto &gt;= 18 AND Voto &lt;= 30</code></td>
-                </tr>
-                <tr>
-                  <td><strong>Vincolo di tupla</strong></td>
-                  <td>Condizione valutabile su ogni tupla indipendentemente</td>
-                  <td><code>NOT(Lode='lode') OR Voto=30</code></td>
-                </tr>
-                <tr>
-                  <td><strong>Vincolo intrarelazionale</strong></td>
-                  <td>Coinvolge solo tuple/valori di una relazione</td>
-                  <td>Unicità della matricola</td>
-                </tr>
-                <tr>
-                  <td><strong>Vincolo interrelazionale</strong></td>
-                  <td>Coinvolge più relazioni</td>
-                  <td>Matricola in Esami deve esistere in Studenti</td>
-                </tr>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Definizione</th>
+                    <th>Esempio</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Vincolo di dominio</strong></td>
+                    <td>Restrizione sui valori di un singolo attributo</td>
+                    <td><code>Voto &gt;= 18 AND Voto &lt;= 30</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vincolo di tupla</strong></td>
+                    <td>
+                      Condizione valutabile su ogni tupla indipendentemente
+                    </td>
+                    <td><code>NOT(Lode='lode') OR Voto=30</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vincolo intrarelazionale</strong></td>
+                    <td>Coinvolge solo tuple/valori di una relazione</td>
+                    <td>Unicità della matricola</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Vincolo interrelazionale</strong></td>
+                    <td>Coinvolge più relazioni</td>
+                    <td>Matricola in Esami deve esistere in Studenti</td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -3295,37 +3314,37 @@ Corsi    (Codice, Titolo, Docente)        -- Corso = codice → riferimento per 
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Concetto</th>
-                  <th>Definizione</th>
-                </tr>
-                <tr>
-                  <td><strong>Superchiave</strong></td>
-                  <td>
-                    Insieme K tale che non esistono due tuple con gli stessi
-                    valori su K.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Chiave</strong></td>
-                  <td>
-                    Superchiave minimale: nessun suo sottoinsieme proprio è
-                    superchiave.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Chiave primaria</strong></td>
-                  <td>
-                    La chiave scelta come principale. Su di essa i NULL sono
-                    <em>vietati</em>. Evidenziata con sottolineatura.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Chiave alternativa</strong></td>
-                  <td>
-                    Chiave non scelta come primaria. NULL in genere ammessi.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Concetto</th>
+                    <th>Definizione</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Superchiave</strong></td>
+                    <td>
+                      Insieme K tale che non esistono due tuple con gli stessi
+                      valori su K.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Chiave</strong></td>
+                    <td>
+                      Superchiave minimale: nessun suo sottoinsieme proprio è
+                      superchiave.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Chiave primaria</strong></td>
+                    <td>
+                      La chiave scelta come principale. Su di essa i NULL sono
+                      <em>vietati</em>. Evidenziata con sottolineatura.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Chiave alternativa</strong></td>
+                    <td>
+                      Chiave non scelta come primaria. NULL in genere ammessi.
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="callout tip">
@@ -3367,7 +3386,7 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
           </section>
 
           <!-- ══════════ PROGETTAZIONE LOGICA ══════════ -->
-          <section id="s-pl">
+          <section id="s-pl" class="arg-block">
             <h2><span class="tag rel">PL</span> Progettazione Logica</h2>
 
             <section id="pl-intro">
@@ -3380,27 +3399,27 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Fase</th>
-                  <th>Input</th>
-                  <th>Output</th>
-                </tr>
-                <tr>
-                  <td><strong>1. Ristrutturazione E-R</strong></td>
-                  <td>Schema E-R + carico applicativo</td>
-                  <td>
-                    Schema E-R ristrutturato (ottimizzato, senza
-                    generalizzazioni né attributi multivalore)
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>2. Traduzione verso mod. logico</strong></td>
-                  <td>Schema E-R ristrutturato + modello logico scelto</td>
-                  <td>
-                    Schema logico (relazionale) + vincoli di integrità +
-                    documentazione
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Fase</th>
+                    <th>Input</th>
+                    <th>Output</th>
+                  </tr>
+                  <tr>
+                    <td><strong>1. Ristrutturazione E-R</strong></td>
+                    <td>Schema E-R + carico applicativo</td>
+                    <td>
+                      Schema E-R ristrutturato (ottimizzato, senza
+                      generalizzazioni né attributi multivalore)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>2. Traduzione verso mod. logico</strong></td>
+                    <td>Schema E-R ristrutturato + modello logico scelto</td>
+                    <td>
+                      Schema logico (relazionale) + vincoli di integrità +
+                      documentazione
+                    </td>
+                  </tr>
                 </table>
               </div>
               <p>La ristrutturazione si articola in 4 passi in sequenza:</p>
@@ -3421,32 +3440,34 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo di ridondanza</th>
-                  <th>Esempio</th>
-                </tr>
-                <tr>
-                  <td>Attributo derivabile da attributi stessa entità</td>
-                  <td><code>ImportoLordo = ImportoNetto + IVA</code></td>
-                </tr>
-                <tr>
-                  <td>Attributo derivabile da aggregazione su altra entità</td>
-                  <td>
-                    <code>ImportoTotale</code> di Acquisto = somma dei
-                    <code>Prezzi</code> dei Prodotti
-                  </td>
-                </tr>
-                <tr>
-                  <td>Attributo derivabile da conteggio occorrenze</td>
-                  <td>
-                    <code>NumeroAbitanti</code> di Città = COUNT occorrenze di
-                    Residenza
-                  </td>
-                </tr>
-                <tr>
-                  <td>Associazione derivabile da composizione di altre</td>
-                  <td>Docenza = Frequenza ∘ Insegnamento</td>
-                </tr>
+                  <tr>
+                    <th>Tipo di ridondanza</th>
+                    <th>Esempio</th>
+                  </tr>
+                  <tr>
+                    <td>Attributo derivabile da attributi stessa entità</td>
+                    <td><code>ImportoLordo = ImportoNetto + IVA</code></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Attributo derivabile da aggregazione su altra entità
+                    </td>
+                    <td>
+                      <code>ImportoTotale</code> di Acquisto = somma dei
+                      <code>Prezzi</code> dei Prodotti
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Attributo derivabile da conteggio occorrenze</td>
+                    <td>
+                      <code>NumeroAbitanti</code> di Città = COUNT occorrenze di
+                      Residenza
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Associazione derivabile da composizione di altre</td>
+                    <td>Docenza = Frequenza ∘ Insegnamento</td>
+                  </tr>
                 </table>
               </div>
               <div class="callout tip">
@@ -3472,49 +3493,51 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Alternativa</th>
-                  <th>Come</th>
-                  <th>Quando conviene</th>
-                </tr>
-                <tr>
-                  <td><strong>(1) Accorpamento figlie nel genitore</strong></td>
-                  <td>
-                    Elimina E₁, E₂; aggiunge i loro attributi a E₀ + attributo
-                    <code>Atipo</code>. Possibili NULL.
-                  </td>
-                  <td>
-                    Operazioni che non distinguono tra E₁ ed E₂ (accessi
-                    ridotti).
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>(2) Accorpamento genitore nelle figlie</strong>
-                  </td>
-                  <td>
-                    Elimina E₀; copia attributi/identificatore a E₁ ed E₂ per
-                    ereditarietà.
-                  </td>
-                  <td>
-                    Solo se generalizzazione è <em>totale</em>. Operazioni su E₁
-                    o E₂ separatamente. No NULL.
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>(3) Sostituzione con associazioni 1:1</strong>
-                  </td>
-                  <td>
-                    Mantiene E₀, E₁, E₂ separate; aggiunge associazioni RG1 e
-                    RG2. Aggiunge vincoli.
-                  </td>
-                  <td>
-                    Generalizzazione non totale, o operazioni che distinguono E₀
-                    da E₁/E₂. Entità con pochi attributi → accesso fisico più
-                    efficiente.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Alternativa</th>
+                    <th>Come</th>
+                    <th>Quando conviene</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>(1) Accorpamento figlie nel genitore</strong>
+                    </td>
+                    <td>
+                      Elimina E₁, E₂; aggiunge i loro attributi a E₀ + attributo
+                      <code>Atipo</code>. Possibili NULL.
+                    </td>
+                    <td>
+                      Operazioni che non distinguono tra E₁ ed E₂ (accessi
+                      ridotti).
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>(2) Accorpamento genitore nelle figlie</strong>
+                    </td>
+                    <td>
+                      Elimina E₀; copia attributi/identificatore a E₁ ed E₂ per
+                      ereditarietà.
+                    </td>
+                    <td>
+                      Solo se generalizzazione è <em>totale</em>. Operazioni su
+                      E₁ o E₂ separatamente. No NULL.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>(3) Sostituzione con associazioni 1:1</strong>
+                    </td>
+                    <td>
+                      Mantiene E₀, E₁, E₂ separate; aggiunge associazioni RG1 e
+                      RG2. Aggiunge vincoli.
+                    </td>
+                    <td>
+                      Generalizzazione non totale, o operazioni che distinguono
+                      E₀ da E₁/E₂. Entità con pochi attributi → accesso fisico
+                      più efficiente.
+                    </td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -3574,93 +3597,93 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
               <h3 class="rel">Traduzione E-R → Modello Relazionale</h3>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Caso E-R</th>
-                  <th>Traduzione</th>
-                  <th>Note</th>
-                </tr>
-                <tr>
-                  <td><strong>Entità</strong></td>
-                  <td>
-                    Relazione con stesso nome, stessi attributi, chiave =
-                    identificatore
-                  </td>
-                  <td>Attributi opzionali → possibili NULL</td>
-                </tr>
-                <tr>
-                  <td><strong>Associazione N:M</strong></td>
-                  <td>
-                    Relazione con attributi propri + identificatori delle due
-                    entità. La chiave è la coppia di identificatori.
-                  </td>
-                  <td>
-                    <code>PARTECIPAZIONE(Matricola, Codice, DataInizio)</code>
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Associazione 1:N</strong></td>
-                  <td>
-                    L'identificatore dell'entità lato N viene aggiunto come
-                    attributo all'entità lato 1 (no relazione separata).
-                  </td>
-                  <td>
-                    <code
-                      >GIOCATORE(Cognome, DataNascita, Ruolo, NomeSquadra,
-                      Ingaggio)</code
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Associazione 1:1 (entrambe obbligatorie)</strong>
-                  </td>
-                  <td>
-                    L'associazione si traduce aggiungendo attributi a una delle
-                    due relazioni (a scelta).
-                  </td>
-                  <td>Due alternative simmetriche valide</td>
-                </tr>
-                <tr>
-                  <td><strong>Associazione 1:1 (una opzionale)</strong></td>
-                  <td>
-                    L'associazione si aggiunge alla relazione dell'entità con
-                    partecipazione obbligatoria, per evitare NULL.
-                  </td>
-                  <td>Alternativa preferibile</td>
-                </tr>
-                <tr>
-                  <td>
-                    <strong>Associazione 1:1 (entrambe opzionali)</strong>
-                  </td>
-                  <td>
-                    Si può usare una terza relazione separata per
-                    l'associazione, evitando NULL.
-                  </td>
-                  <td>Solo se occorrenze associazione ≪ occorrenze entità</td>
-                </tr>
-                <tr>
-                  <td><strong>Entità con identificatore esterno</strong></td>
-                  <td>
-                    La chiave include l'identificatore dell'entità
-                    "identificante" (e rappresenta già l'associazione).
-                  </td>
-                  <td>
-                    <code
-                      >STUDENTE(Matricola, NomeUniversità, Cognome,
-                      AnnoIscrizione)</code
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Associazione ricorsiva</strong></td>
-                  <td>
-                    Relazione con attributi ridenominati per distinguere i
-                    ruoli.
-                  </td>
-                  <td>
-                    <code>COMPOSIZIONE(Composto, Componente, Quantità)</code>
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Caso E-R</th>
+                    <th>Traduzione</th>
+                    <th>Note</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Entità</strong></td>
+                    <td>
+                      Relazione con stesso nome, stessi attributi, chiave =
+                      identificatore
+                    </td>
+                    <td>Attributi opzionali → possibili NULL</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Associazione N:M</strong></td>
+                    <td>
+                      Relazione con attributi propri + identificatori delle due
+                      entità. La chiave è la coppia di identificatori.
+                    </td>
+                    <td>
+                      <code>PARTECIPAZIONE(Matricola, Codice, DataInizio)</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Associazione 1:N</strong></td>
+                    <td>
+                      L'identificatore dell'entità lato N viene aggiunto come
+                      attributo all'entità lato 1 (no relazione separata).
+                    </td>
+                    <td>
+                      <code
+                        >GIOCATORE(Cognome, DataNascita, Ruolo, NomeSquadra,
+                        Ingaggio)</code
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Associazione 1:1 (entrambe obbligatorie)</strong>
+                    </td>
+                    <td>
+                      L'associazione si traduce aggiungendo attributi a una
+                      delle due relazioni (a scelta).
+                    </td>
+                    <td>Due alternative simmetriche valide</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Associazione 1:1 (una opzionale)</strong></td>
+                    <td>
+                      L'associazione si aggiunge alla relazione dell'entità con
+                      partecipazione obbligatoria, per evitare NULL.
+                    </td>
+                    <td>Alternativa preferibile</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <strong>Associazione 1:1 (entrambe opzionali)</strong>
+                    </td>
+                    <td>
+                      Si può usare una terza relazione separata per
+                      l'associazione, evitando NULL.
+                    </td>
+                    <td>Solo se occorrenze associazione ≪ occorrenze entità</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Entità con identificatore esterno</strong></td>
+                    <td>
+                      La chiave include l'identificatore dell'entità
+                      "identificante" (e rappresenta già l'associazione).
+                    </td>
+                    <td>
+                      <code
+                        >STUDENTE(Matricola, NomeUniversità, Cognome,
+                        AnnoIscrizione)</code
+                      >
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Associazione ricorsiva</strong></td>
+                    <td>
+                      Relazione con attributi ridenominati per distinguere i
+                      ruoli.
+                    </td>
+                    <td>
+                      <code>COMPOSIZIONE(Composto, Componente, Quantità)</code>
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="callout tip">
@@ -3673,7 +3696,7 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
           </section>
 
           <!-- ══════════ ALGEBRA RELAZIONALE ══════════ -->
-          <section id="s-alg">
+          <section id="s-alg" class="arg-block">
             <h2><span class="tag alg">ALG</span> Algebra Relazionale</h2>
 
             <section id="alg-intro">
@@ -3687,25 +3710,25 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Categoria</th>
-                  <th>Operatori</th>
-                </tr>
-                <tr>
-                  <td>Insiemistici</td>
-                  <td>Unione (∪), Intersezione (∩), Differenza (−)</td>
-                </tr>
-                <tr>
-                  <td>Specifici relazionali</td>
-                  <td>Ridenominazione (ρ), Selezione (σ), Proiezione (π)</td>
-                </tr>
-                <tr>
-                  <td>Join</td>
-                  <td>
-                    Join naturale (⨝), Prodotto cartesiano, Theta-join,
-                    Equi-join, Join esterno
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Categoria</th>
+                    <th>Operatori</th>
+                  </tr>
+                  <tr>
+                    <td>Insiemistici</td>
+                    <td>Unione (∪), Intersezione (∩), Differenza (−)</td>
+                  </tr>
+                  <tr>
+                    <td>Specifici relazionali</td>
+                    <td>Ridenominazione (ρ), Selezione (σ), Proiezione (π)</td>
+                  </tr>
+                  <tr>
+                    <td>Join</td>
+                    <td>
+                      Join naturale (⨝), Prodotto cartesiano, Theta-join,
+                      Equi-join, Join esterno
+                    </td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -3719,31 +3742,32 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Operatore</th>
-                  <th>Notazione</th>
-                  <th>Risultato</th>
-                </tr>
-                <tr>
-                  <td><strong>Unione</strong></td>
-                  <td><code>r₁ ∪ r₂</code></td>
-                  <td>
-                    Tuple che appartengono a r₁ <em>oppure</em> r₂ (o entrambe).
-                    No duplicati.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Intersezione</strong></td>
-                  <td><code>r₁ ∩ r₂</code></td>
-                  <td>
-                    Tuple che appartengono <em>sia</em> a r₁ <em>sia</em> a r₂.
-                  </td>
-                </tr>
-                <tr>
-                  <td><strong>Differenza</strong></td>
-                  <td><code>r₁ − r₂</code></td>
-                  <td>Tuple che appartengono a r₁ ma <em>non</em> a r₂.</td>
-                </tr>
+                  <tr>
+                    <th>Operatore</th>
+                    <th>Notazione</th>
+                    <th>Risultato</th>
+                  </tr>
+                  <tr>
+                    <td><strong>Unione</strong></td>
+                    <td><code>r₁ ∪ r₂</code></td>
+                    <td>
+                      Tuple che appartengono a r₁ <em>oppure</em> r₂ (o
+                      entrambe). No duplicati.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Intersezione</strong></td>
+                    <td><code>r₁ ∩ r₂</code></td>
+                    <td>
+                      Tuple che appartengono <em>sia</em> a r₁ <em>sia</em> a
+                      r₂.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Differenza</strong></td>
+                    <td><code>r₁ − r₂</code></td>
+                    <td>Tuple che appartengono a r₁ ma <em>non</em> a r₂.</td>
+                  </tr>
                 </table>
               </div>
               <div class="callout alg">
@@ -3805,21 +3829,21 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
 π Reparto, Capo (Impiegati)    -- possibile riduzione tuple (duplicati collassano)</code></pre>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Proprietà</th>
-                  <th>Condizione</th>
-                </tr>
-                <tr>
-                  <td>πY(r) ha stesso numero di tuple di r</td>
-                  <td>⟺ Y è superchiave per r</td>
-                </tr>
-                <tr>
-                  <td>πY(r) può avere meno tuple</td>
-                  <td>
-                    quando Y non è superchiave (tuple con stessi valori su Y
-                    collassano in una)
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Proprietà</th>
+                    <th>Condizione</th>
+                  </tr>
+                  <tr>
+                    <td>πY(r) ha stesso numero di tuple di r</td>
+                    <td>⟺ Y è superchiave per r</td>
+                  </tr>
+                  <tr>
+                    <td>πY(r) può avere meno tuple</td>
+                    <td>
+                      quando Y non è superchiave (tuple con stessi valori su Y
+                      collassano in una)
+                    </td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -3837,63 +3861,63 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
 -- r₁⨝r₂ = { t su X₁X₂ | t[X₁] ∈ r₁  e  t[X₂] ∈ r₂ }</code></pre>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Caso</th>
-                  <th>Dimensione risultato</th>
-                </tr>
-                <tr>
-                  <td>Join completo</td>
-                  <td>
-                    Ogni tupla di almeno uno degli operandi contribuisce al
-                    risultato.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Join incompleto</td>
-                  <td>
-                    Alcune tuple non trovano controparte (<em
-                      >dangling tuples</em
-                    >) → escluse.
-                  </td>
-                </tr>
-                <tr>
-                  <td>Join vuoto</td>
-                  <td>Nessuna corrispondenza → relazione vuota.</td>
-                </tr>
-                <tr>
-                  <td>Prodotto cartesiano</td>
-                  <td>
-                    Attributi disgiunti (X₁∩X₂ = ∅) → tutte le combinazioni
-                    possibili: |r₁| × |r₂| tuple.
-                  </td>
-                </tr>
+                  <tr>
+                    <th>Caso</th>
+                    <th>Dimensione risultato</th>
+                  </tr>
+                  <tr>
+                    <td>Join completo</td>
+                    <td>
+                      Ogni tupla di almeno uno degli operandi contribuisce al
+                      risultato.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Join incompleto</td>
+                    <td>
+                      Alcune tuple non trovano controparte (<em
+                        >dangling tuples</em
+                      >) → escluse.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Join vuoto</td>
+                    <td>Nessuna corrispondenza → relazione vuota.</td>
+                  </tr>
+                  <tr>
+                    <td>Prodotto cartesiano</td>
+                    <td>
+                      Attributi disgiunti (X₁∩X₂ = ∅) → tutte le combinazioni
+                      possibili: |r₁| × |r₂| tuple.
+                    </td>
+                  </tr>
                 </table>
               </div>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Proprietà importanti</th>
-                  <th></th>
-                </tr>
-                <tr>
-                  <td>Join è commutativo e associativo</td>
-                  <td>
-                    <code>r₁⨝r₂ = r₂⨝r₁</code> e
-                    <code>r₁⨝(r₂⨝r₃) = (r₁⨝r₂)⨝r₃</code>
-                  </td>
-                </tr>
-                <tr>
-                  <td>X₁=X₂ → join = intersezione</td>
-                  <td><code>r₁⨝r₂ = r₁∩r₂</code></td>
-                </tr>
-                <tr>
-                  <td>X₁∩X₂ è chiave di r₂</td>
-                  <td>Il join contiene al più |r₁| tuple</td>
-                </tr>
-                <tr>
-                  <td>X₁∩X₂ è chiave di r₂ + vincolo referenziale</td>
-                  <td>Il join contiene esattamente |r₁| tuple</td>
-                </tr>
+                  <tr>
+                    <th>Proprietà importanti</th>
+                    <th></th>
+                  </tr>
+                  <tr>
+                    <td>Join è commutativo e associativo</td>
+                    <td>
+                      <code>r₁⨝r₂ = r₂⨝r₁</code> e
+                      <code>r₁⨝(r₂⨝r₃) = (r₁⨝r₂)⨝r₃</code>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>X₁=X₂ → join = intersezione</td>
+                    <td><code>r₁⨝r₂ = r₁∩r₂</code></td>
+                  </tr>
+                  <tr>
+                    <td>X₁∩X₂ è chiave di r₂</td>
+                    <td>Il join contiene al più |r₁| tuple</td>
+                  </tr>
+                  <tr>
+                    <td>X₁∩X₂ è chiave di r₂ + vincolo referenziale</td>
+                    <td>Il join contiene esattamente |r₁| tuple</td>
+                  </tr>
                 </table>
               </div>
               <h3 class="sub">Join esterno (outer join)</h3>
@@ -3903,26 +3927,26 @@ Auto        (Provincia, Numero, Proprietario, Indirizzo)
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Tipo</th>
-                  <th>Notazione</th>
-                  <th>Estende</th>
-                </tr>
-                <tr>
-                  <td>Left outer join</td>
-                  <td><code>r₁ ⨝LEFT r₂</code></td>
-                  <td>Tutte le tuple di r₁</td>
-                </tr>
-                <tr>
-                  <td>Right outer join</td>
-                  <td><code>r₁ ⨝RIGHT r₂</code></td>
-                  <td>Tutte le tuple di r₂</td>
-                </tr>
-                <tr>
-                  <td>Full outer join</td>
-                  <td><code>r₁ ⨝FULL r₂</code></td>
-                  <td>Tutte le tuple di entrambi</td>
-                </tr>
+                  <tr>
+                    <th>Tipo</th>
+                    <th>Notazione</th>
+                    <th>Estende</th>
+                  </tr>
+                  <tr>
+                    <td>Left outer join</td>
+                    <td><code>r₁ ⨝LEFT r₂</code></td>
+                    <td>Tutte le tuple di r₁</td>
+                  </tr>
+                  <tr>
+                    <td>Right outer join</td>
+                    <td><code>r₁ ⨝RIGHT r₂</code></td>
+                    <td>Tutte le tuple di r₂</td>
+                  </tr>
+                  <tr>
+                    <td>Full outer join</td>
+                    <td><code>r₁ ⨝FULL r₂</code></td>
+                    <td>Tutte le tuple di entrambi</td>
+                  </tr>
                 </table>
               </div>
             </section>
@@ -3986,7 +4010,7 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
           </section>
 
           <!-- ══════════ NORMALIZZAZIONE ══════════ -->
-          <section id="s-norm">
+          <section id="s-norm" class="arg-block">
             <h2><span class="tag norm">NORM</span> La Normalizzazione</h2>
 
             <section id="norm-intro">
@@ -4021,48 +4045,48 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Impiegato</th>
-                  <th>Stipendio</th>
-                  <th>Progetto</th>
-                  <th>Bilancio</th>
-                  <th>Funzione</th>
-                </tr>
-                <tr>
-                  <td>Rossi</td>
-                  <td>20000</td>
-                  <td>Marte</td>
-                  <td>2000</td>
-                  <td>tecnico</td>
-                </tr>
-                <tr>
-                  <td>Verdi</td>
-                  <td>35000</td>
-                  <td>Giove</td>
-                  <td>15000</td>
-                  <td>progettista</td>
-                </tr>
-                <tr>
-                  <td>Verdi</td>
-                  <td>35000</td>
-                  <td>Venere</td>
-                  <td>15000</td>
-                  <td>progettista</td>
-                </tr>
-                <tr>
-                  <td>Neri</td>
-                  <td>55000</td>
-                  <td>Venere</td>
-                  <td>15000</td>
-                  <td>direttore</td>
-                </tr>
-                <tr>
-                  <td>Neri</td>
-                  <td>55000</td>
-                  <td>Giove</td>
-                  <td>15000</td>
-                  <td>consulente</td>
-                </tr>
+                  <tr>
+                    <th>Impiegato</th>
+                    <th>Stipendio</th>
+                    <th>Progetto</th>
+                    <th>Bilancio</th>
+                    <th>Funzione</th>
+                  </tr>
+                  <tr>
+                    <td>Rossi</td>
+                    <td>20000</td>
+                    <td>Marte</td>
+                    <td>2000</td>
+                    <td>tecnico</td>
+                  </tr>
+                  <tr>
+                    <td>Verdi</td>
+                    <td>35000</td>
+                    <td>Giove</td>
+                    <td>15000</td>
+                    <td>progettista</td>
+                  </tr>
+                  <tr>
+                    <td>Verdi</td>
+                    <td>35000</td>
+                    <td>Venere</td>
+                    <td>15000</td>
+                    <td>progettista</td>
+                  </tr>
+                  <tr>
+                    <td>Neri</td>
+                    <td>55000</td>
+                    <td>Venere</td>
+                    <td>15000</td>
+                    <td>direttore</td>
+                  </tr>
+                  <tr>
+                    <td>Neri</td>
+                    <td>55000</td>
+                    <td>Giove</td>
+                    <td>15000</td>
+                    <td>consulente</td>
+                  </tr>
                 </table>
               </div>
               <p>Questa relazione presenta tre tipi di anomalie:</p>
@@ -4173,34 +4197,34 @@ Impiegati ⨝ Progetto=Codice Progetti    -- equi-join: condizione di uguaglianz
               </p>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Impiegato</th>
-                  <th>Sede</th>
-                </tr>
-                <tr>
-                  <td>Rossi</td>
-                  <td>Roma</td>
-                </tr>
-                <tr>
-                  <td>Verdi</td>
-                  <td>Milano</td>
-                </tr>
+                  <tr>
+                    <th>Impiegato</th>
+                    <th>Sede</th>
+                  </tr>
+                  <tr>
+                    <td>Rossi</td>
+                    <td>Roma</td>
+                  </tr>
+                  <tr>
+                    <td>Verdi</td>
+                    <td>Milano</td>
+                  </tr>
                 </table>
               </div>
               <div class="table-wrapper">
                 <table>
-                <tr>
-                  <th>Progetto</th>
-                  <th>Sede</th>
-                </tr>
-                <tr>
-                  <td>Marte</td>
-                  <td>Roma</td>
-                </tr>
-                <tr>
-                  <td>Saturno</td>
-                  <td>Milano</td>
-                </tr>
+                  <tr>
+                    <th>Progetto</th>
+                    <th>Sede</th>
+                  </tr>
+                  <tr>
+                    <td>Marte</td>
+                    <td>Roma</td>
+                  </tr>
+                  <tr>
+                    <td>Saturno</td>
+                    <td>Milano</td>
+                  </tr>
                 </table>
               </div>
               <p>
@@ -4329,46 +4353,53 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
         </nav>
         <main>
           <!-- ══════════════════ SISTEMI E RETI ══════════════════ -->
-          <section id="s-reti">
-            <h2><span class="tag reti">RETI</span> Sistemi e Reti</h2>
+          <h2
+            style="
+              margin-bottom: 2rem;
+              border-bottom: 2px solid var(--reti);
+              padding-bottom: 1rem;
+            "
+          >
+            <span class="tag reti">RETI</span> Sistemi e Reti
+          </h2>
 
-            <section id="s-hardware">
-              <h3 class="reti">Le basi: Sistemi ed Architetture</h3>
-              <p>
-                Un sistema di elaborazione è un insieme di risorse hardware e
-                software che interagiscono per elaborare dati. La base logica
-                dei moderni calcolatori è il
-                <strong>Modello di Von Neumann</strong>.
-              </p>
+          <section id="s-hardware" class="arg-block">
+            <h3 class="reti">Le basi: Sistemi ed Architetture</h3>
+            <p>
+              Un sistema di elaborazione è un insieme di risorse hardware e
+              software che interagiscono per elaborare dati. La base logica dei
+              moderni calcolatori è il
+              <strong>Modello di Von Neumann</strong>.
+            </p>
 
-              <h3 class="sub reti">Modello di Von Neumann</h3>
-              <ul>
-                <li>
-                  <strong>CPU (Central Processing Unit):</strong> Contiene l'ALU
-                  (calcoli) e la CU (controllo).
-                </li>
-                <li>
-                  <strong>Memoria Centrale (RAM):</strong> Memorizzazione
-                  volatile di dati e istruzioni.
-                </li>
-                <li>
-                  <strong>Bus:</strong> Canali di comunicazione (Dati,
-                  Indirizzi, Controllo).
-                </li>
-                <li>
-                  <strong>I/O:</strong> Interfacce per il collegamento con le
-                  periferiche.
-                </li>
-              </ul>
-              <p>
-                Il funzionamento avviene tramite il
-                <strong>Ciclo Macchina</strong>: <em>Fetch</em> (prelevamento),
-                <em>Decode</em> (decodifica) ed <em>Execute</em> (esecuzione).
-              </p>
+            <h3 class="sub reti">Modello di Von Neumann</h3>
+            <ul>
+              <li>
+                <strong>CPU (Central Processing Unit):</strong> Contiene l'ALU
+                (calcoli) e la CU (controllo).
+              </li>
+              <li>
+                <strong>Memoria Centrale (RAM):</strong> Memorizzazione volatile
+                di dati e istruzioni.
+              </li>
+              <li>
+                <strong>Bus:</strong> Canali di comunicazione (Dati, Indirizzi,
+                Controllo).
+              </li>
+              <li>
+                <strong>I/O:</strong> Interfacce per il collegamento con le
+                periferiche.
+              </li>
+            </ul>
+            <p>
+              Il funzionamento avviene tramite il
+              <strong>Ciclo Macchina</strong>: <em>Fetch</em> (prelevamento),
+              <em>Decode</em> (decodifica) ed <em>Execute</em> (esecuzione).
+            </p>
 
-              <h3 class="sub reti">Architetture CPU: CISC vs RISC</h3>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">Architetture CPU: CISC vs RISC</h3>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Caratteristica</th>
                   <th>CISC (Complex Instruction Set)</th>
@@ -4389,48 +4420,47 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                   <td>Intel x86 (Desktop)</td>
                   <td>ARM (Smartphone, Apple Silicon)</td>
                 </tr>
-                </table>
-              </div>
+              </table>
+            </div>
 
-              <h3 class="sub reti">
-                Il Modello a Strati: Mr. Smith e Miss Jones
-              </h3>
-              <div class="callout tip">
-                <strong>L'analogia degli Agenti Segreti:</strong> Per
-                comprendere i livelli, immaginiamo Mr. Smith (Kuala Lumpur) e
-                Miss Jones (Londra). Per scambiarsi messaggi cifrati, non
-                comunicano direttamente ma usano i
-                <em>servizi postali</em> nazionali.
-                <ul style="margin-top: 0.5rem">
-                  <li>
-                    <strong>Protocollo tra Agenti:</strong> Regole per
-                    cifrare/decifrare il messaggio (livello superiore).
-                  </li>
-                  <li>
-                    <strong>Servizio Postale:</strong> Offre il trasporto dei
-                    messaggi (livello inferiore), mascherando come questo
-                    avvenga (aereo, nave, furgone).
-                  </li>
-                  <li>
-                    <strong>Interfaccia:</strong> Il set di servizi (es.
-                    raccomandata) che il livello postale offre agli agenti.
-                  </li>
-                </ul>
-                Se il messaggio viene smarrito dalle poste, gli agenti (livello
-                superiore) devono prevedere un meccanismo per accorgersene e
-                ritentare l'invio.
-              </div>
+            <h3 class="sub reti">
+              Il Modello a Strati: Mr. Smith e Miss Jones
+            </h3>
+            <div class="callout tip">
+              <strong>L'analogia degli Agenti Segreti:</strong> Per comprendere
+              i livelli, immaginiamo Mr. Smith (Kuala Lumpur) e Miss Jones
+              (Londra). Per scambiarsi messaggi cifrati, non comunicano
+              direttamente ma usano i <em>servizi postali</em> nazionali.
+              <ul style="margin-top: 0.5rem">
+                <li>
+                  <strong>Protocollo tra Agenti:</strong> Regole per
+                  cifrare/decifrare il messaggio (livello superiore).
+                </li>
+                <li>
+                  <strong>Servizio Postale:</strong> Offre il trasporto dei
+                  messaggi (livello inferiore), mascherando come questo avvenga
+                  (aereo, nave, furgone).
+                </li>
+                <li>
+                  <strong>Interfaccia:</strong> Il set di servizi (es.
+                  raccomandata) che il livello postale offre agli agenti.
+                </li>
+              </ul>
+              Se il messaggio viene smarrito dalle poste, gli agenti (livello
+              superiore) devono prevedere un meccanismo per accorgersene e
+              ritentare l'invio.
+            </div>
 
-              <h3 class="sub reti">
-                Modello ISO/OSI (Open System Interconnection)
-              </h3>
-              <p>
-                Progetto ISO nato alla fine degli anni '70 per standardizzare
-                l'interconnessione di sistemi informatici tramite un approccio a
-                7 livelli.
-              </p>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">
+              Modello ISO/OSI (Open System Interconnection)
+            </h3>
+            <p>
+              Progetto ISO nato alla fine degli anni '70 per standardizzare
+              l'interconnessione di sistemi informatici tramite un approccio a 7
+              livelli.
+            </p>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Livello OSI</th>
                   <th>PDU</th>
@@ -4479,28 +4509,28 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                     Trasmissione bit sul mezzo fisico (Cavi, Hub, frequenze).
                   </td>
                 </tr>
-                </table>
-              </div>
+              </table>
+            </div>
 
-              <h3 class="sub reti">PDU, SDU e Incapsulamento</h3>
-              <div class="callout warn">
-                <strong>PDU (Protocol Data Unit):</strong> Unità dati scambiata
-                tra <em>peer entities</em> (stesso livello).<br />
-                <strong>SDU (Service Data Unit):</strong> Unità dati consegnata
-                al livello sottostante.<br />
-                <strong>Encapsulation:</strong> A ogni livello viene aggiunto un
-                <strong>Header</strong> (PCI - Protocol Control Information)
-                alla SDU proveniente dal livello superiore.
-              </div>
-              <p>
-                <strong>Esempio Busta:</strong> La lettera è il
-                <em>Payload (Dato)</em>, la busta con mittente e destinatario è
-                l'<em>Header</em>. L'insieme busta+lettera è la <em>PDU</em>.
-              </p>
+            <h3 class="sub reti">PDU, SDU e Incapsulamento</h3>
+            <div class="callout warn">
+              <strong>PDU (Protocol Data Unit):</strong> Unità dati scambiata
+              tra <em>peer entities</em> (stesso livello).<br />
+              <strong>SDU (Service Data Unit):</strong> Unità dati consegnata al
+              livello sottostante.<br />
+              <strong>Encapsulation:</strong> A ogni livello viene aggiunto un
+              <strong>Header</strong> (PCI - Protocol Control Information) alla
+              SDU proveniente dal livello superiore.
+            </div>
+            <p>
+              <strong>Esempio Busta:</strong> La lettera è il
+              <em>Payload (Dato)</em>, la busta con mittente e destinatario è
+              l'<em>Header</em>. L'insieme busta+lettera è la <em>PDU</em>.
+            </p>
 
-              <h3 class="sub reti">Confronto OSI vs TCP/IP</h3>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">Confronto OSI vs TCP/IP</h3>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Caratteristica</th>
                   <th>Modello ISO/OSI</th>
@@ -4526,37 +4556,37 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                   <td>Trasporto garantisce consegna.</td>
                   <td>Affidabilità gestita da TCP (non dal modello).</td>
                 </tr>
-                </table>
-              </div>
-            </section>
+              </table>
+            </div>
+          </section>
 
-            <section id="s-modulo1">
-              <h3 class="reti">
-                Modulo 1: Fondamenti di Hardware e Connettività
-              </h3>
+          <section id="s-modulo1" class="arg-block">
+            <h3 class="reti">
+              Modulo 1: Fondamenti di Hardware e Connettività
+            </h3>
 
-              <h3 class="sub reti">1.1 Hub (Livello 1 - Fisico)</h3>
-              <p>
-                L'Hub è un dispositivo di rete elementare che opera
-                esclusivamente al <strong>Livello 1</strong>. Non distingue le
-                porte: quando riceve un segnale, lo rigenera e lo invia a tutti
-                (<strong>broadcast</strong>).
-              </p>
-              <ul>
-                <li>
-                  <strong>Dominio di Collisione:</strong> Tutte le porte
-                  appartengono allo stesso dominio. Se due host trasmettono
-                  insieme, i segnali si sovrappongono.
-                </li>
-                <li>
-                  <strong>Efficienza:</strong> Molto bassa, cala drasticamente
-                  all'aumentare dei dispositivi.
-                </li>
-              </ul>
+            <h3 class="sub reti">1.1 Hub (Livello 1 - Fisico)</h3>
+            <p>
+              L'Hub è un dispositivo di rete elementare che opera esclusivamente
+              al <strong>Livello 1</strong>. Non distingue le porte: quando
+              riceve un segnale, lo rigenera e lo invia a tutti
+              (<strong>broadcast</strong>).
+            </p>
+            <ul>
+              <li>
+                <strong>Dominio di Collisione:</strong> Tutte le porte
+                appartengono allo stesso dominio. Se due host trasmettono
+                insieme, i segnali si sovrappongono.
+              </li>
+              <li>
+                <strong>Efficienza:</strong> Molto bassa, cala drasticamente
+                all'aumentare dei dispositivi.
+              </li>
+            </ul>
 
-              <h3 class="sub reti">Meccanismi di Accesso: CSMA/CD e CSMA/CA</h3>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">Meccanismi di Accesso: CSMA/CD e CSMA/CA</h3>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Protocollo</th>
                   <th>Nome</th>
@@ -4580,189 +4610,183 @@ FD2: Impiegato, Progetto -> Funzione (Completa)</code></pre>
                     <em>prima</em> di trasmettere e aspetta un <em>ACK</em>.
                   </td>
                 </tr>
-                </table>
-              </div>
+              </table>
+            </div>
 
-              <h3 class="sub reti">1.2 Ethernet e Mezzi Fisici</h3>
-              <p>
-                L'interfaccia fisica standard per le LAN è la
-                <strong>porta Ethernet (RJ45)</strong>. La velocità dipende
-                dallo standard e dalla categoria del cavo.
-              </p>
-              <ul>
-                <li>
-                  <strong>FastEthernet (802.3u):</strong> Fino a 100 Mbps.
-                </li>
-                <li>
-                  <strong>GigabitEthernet (802.3ab):</strong> Fino a 1 Gbps
-                  (standard attuale).
-                </li>
-                <li>
-                  <strong>Auto-negotiation:</strong> I dispositivi si accordano
-                  sulla velocità massima supportata da entrambi.
-                </li>
-              </ul>
-              <div class="callout tip">
-                <strong>Cavi:</strong> Cat5e e Cat6 supportano il Gigabit. La
-                <strong>Fibra Ottica</strong> invece usa impulsi luminosi per
-                distanze maggiori e velocità fino a 10/100 Gbps.
-              </div>
+            <h3 class="sub reti">1.2 Ethernet e Mezzi Fisici</h3>
+            <p>
+              L'interfaccia fisica standard per le LAN è la
+              <strong>porta Ethernet (RJ45)</strong>. La velocità dipende dallo
+              standard e dalla categoria del cavo.
+            </p>
+            <ul>
+              <li><strong>FastEthernet (802.3u):</strong> Fino a 100 Mbps.</li>
+              <li>
+                <strong>GigabitEthernet (802.3ab):</strong> Fino a 1 Gbps
+                (standard attuale).
+              </li>
+              <li>
+                <strong>Auto-negotiation:</strong> I dispositivi si accordano
+                sulla velocità massima supportata da entrambi.
+              </li>
+            </ul>
+            <div class="callout tip">
+              <strong>Cavi:</strong> Cat5e e Cat6 supportano il Gigabit. La
+              <strong>Fibra Ottica</strong> invece usa impulsi luminosi per
+              distanze maggiori e velocità fino a 10/100 Gbps.
+            </div>
 
-              <h3 class="sub reti">1.3 Cablaggio Strutturato</h3>
-              <p>
-                Insieme di componenti passivi (cavi, prese, permutatori)
-                installati secondo norme standard (ISO/IEC 11801). Adotta una
-                <strong>topologia a stella estesa</strong>:
-              </p>
-              <ul>
-                <li>
-                  <strong>CD (Campus Distributor):</strong> Centro stella di
-                  comprensorio (Main Crossconnect).
-                </li>
-                <li>
-                  <strong>BD (Building Distributor):</strong> Centro stella di
-                  edificio.
-                </li>
-                <li>
-                  <strong>FD (Floor Distributor):</strong> Centro stella di
-                  piano (Patch Panel in armadio rack).
-                </li>
-              </ul>
-              <div class="callout warn">
-                <strong>Limiti di Lunghezza:</strong> Il collegamento
-                orizzontale (presa-armadio) è max <strong>90 metri</strong>. Il
-                canale totale (inclusi patch cord) è max
-                <strong>100 metri</strong>.
-              </div>
-            </section>
+            <h3 class="sub reti">1.3 Cablaggio Strutturato</h3>
+            <p>
+              Insieme di componenti passivi (cavi, prese, permutatori)
+              installati secondo norme standard (ISO/IEC 11801). Adotta una
+              <strong>topologia a stella estesa</strong>:
+            </p>
+            <ul>
+              <li>
+                <strong>CD (Campus Distributor):</strong> Centro stella di
+                comprensorio (Main Crossconnect).
+              </li>
+              <li>
+                <strong>BD (Building Distributor):</strong> Centro stella di
+                edificio.
+              </li>
+              <li>
+                <strong>FD (Floor Distributor):</strong> Centro stella di piano
+                (Patch Panel in armadio rack).
+              </li>
+            </ul>
+            <div class="callout warn">
+              <strong>Limiti di Lunghezza:</strong> Il collegamento orizzontale
+              (presa-armadio) è max <strong>90 metri</strong>. Il canale totale
+              (inclusi patch cord) è max <strong>100 metri</strong>.
+            </div>
+          </section>
 
-            <section id="s-modulo2">
-              <h3 class="reti">
-                Modulo 2: Protocolli di Livello 2 (Data Link)
-              </h3>
+          <section id="s-modulo2" class="arg-block">
+            <h3 class="reti">Modulo 2: Protocolli di Livello 2 (Data Link)</h3>
 
-              <h3 class="sub reti">2.1 ARP (Address Resolution Protocol)</h3>
-              <p>
-                Risolve un <strong>IP noto</strong> in un
-                <strong>MAC sconosciuto</strong> nella LAN. Poiché collega L2 e
-                L3, è spesso definito come livello 2.5.
-              </p>
-              <ul>
-                <li>
-                  <strong>ARP Request:</strong> Inviata in broadcast ("Chi ha
-                  192.168.1.1?").
-                </li>
-                <li>
-                  <strong>ARP Reply:</strong> Risposta in unicast ("Il mio MAC è
-                  AA:BB...").
-                </li>
-                <li>
-                  <strong>ARP Cache:</strong> Tabella temporanea IP ↔ MAC
-                  presente in ogni host.
-                </li>
-                <li>
-                  <strong>RARP:</strong> (Obsoleto) Risolve un MAC noto in un IP
-                  (sostituito da DHCP).
-                </li>
-              </ul>
-              <div class="callout warn">
-                <strong>ARP Spoofing:</strong> Vulnerabilità che permette a un
-                attaccante di inviare <em>ARP Reply</em> false per intercettare
-                il traffico (Man-in-the-Middle). IPv6 usa
-                <strong>NDP</strong> su ICMPv6 invece di ARP.
-              </div>
+            <h3 class="sub reti">2.1 ARP (Address Resolution Protocol)</h3>
+            <p>
+              Risolve un <strong>IP noto</strong> in un
+              <strong>MAC sconosciuto</strong> nella LAN. Poiché collega L2 e
+              L3, è spesso definito come livello 2.5.
+            </p>
+            <ul>
+              <li>
+                <strong>ARP Request:</strong> Inviata in broadcast ("Chi ha
+                192.168.1.1?").
+              </li>
+              <li>
+                <strong>ARP Reply:</strong> Risposta in unicast ("Il mio MAC è
+                AA:BB...").
+              </li>
+              <li>
+                <strong>ARP Cache:</strong> Tabella temporanea IP ↔ MAC presente
+                in ogni host.
+              </li>
+              <li>
+                <strong>RARP:</strong> (Obsoleto) Risolve un MAC noto in un IP
+                (sostituito da DHCP).
+              </li>
+            </ul>
+            <div class="callout warn">
+              <strong>ARP Spoofing:</strong> Vulnerabilità che permette a un
+              attaccante di inviare <em>ARP Reply</em> false per intercettare il
+              traffico (Man-in-the-Middle). IPv6 usa <strong>NDP</strong> su
+              ICMPv6 invece di ARP.
+            </div>
 
-              <h3 class="sub reti">2.2 Switch e Domini</h3>
-              <p>
-                Lo Switch inoltra i frame in base alla
-                <strong>MAC Table (CAM Table)</strong>.
-              </p>
-              <ul>
-                <li>
-                  <strong>Dominio di Collisione:</strong> Ogni porta dello
-                  switch è un dominio separato (Full-duplex).
-                </li>
-                <li>
-                  <strong>Dominio di Broadcast:</strong> Di default, tutte le
-                  porte appartengono allo stesso dominio.
-                </li>
-              </ul>
+            <h3 class="sub reti">2.2 Switch e Domini</h3>
+            <p>
+              Lo Switch inoltra i frame in base alla
+              <strong>MAC Table (CAM Table)</strong>.
+            </p>
+            <ul>
+              <li>
+                <strong>Dominio di Collisione:</strong> Ogni porta dello switch
+                è un dominio separato (Full-duplex).
+              </li>
+              <li>
+                <strong>Dominio di Broadcast:</strong> Di default, tutte le
+                porte appartengono allo stesso dominio.
+              </li>
+            </ul>
 
-              <h3 class="sub reti">2.3 STP (Spanning Tree Protocol)</h3>
-              <p>
-                Evita i loop di livello 2 in caso di collegamenti ridondanti,
-                disattivando logicamente alcuni link.
-              </p>
-              <ol>
-                <li>
-                  <strong>Elezione Root Bridge:</strong> Lo switch con Bridge ID
-                  più basso diventa il centro stella logico.
-                </li>
-                <li>
-                  <strong>Calcolo Path Cost:</strong> Ogni switch sceglie la
-                  porta migliore (Root Port) verso il root.
-                </li>
-                <li>
-                  <strong>Blocking:</strong> Le porte ridondanti vengono
-                  bloccate; si riattivano solo in caso di guasto.
-                </li>
-              </ol>
+            <h3 class="sub reti">2.3 STP (Spanning Tree Protocol)</h3>
+            <p>
+              Evita i loop di livello 2 in caso di collegamenti ridondanti,
+              disattivando logicamente alcuni link.
+            </p>
+            <ol>
+              <li>
+                <strong>Elezione Root Bridge:</strong> Lo switch con Bridge ID
+                più basso diventa il centro stella logico.
+              </li>
+              <li>
+                <strong>Calcolo Path Cost:</strong> Ogni switch sceglie la porta
+                migliore (Root Port) verso il root.
+              </li>
+              <li>
+                <strong>Blocking:</strong> Le porte ridondanti vengono bloccate;
+                si riattivano solo in caso di guasto.
+              </li>
+            </ol>
 
-              <h3 class="sub reti">2.4 VLAN e Trunking</h3>
-              <p>
-                Le VLAN segmentano logicamente lo switch fisico in più domini di
-                broadcast.
-              </p>
-              <ul>
-                <li>
-                  <strong>Porta Access:</strong> Appartiene a una sola VLAN (es.
-                  per i PC).
-                </li>
-                <li>
-                  <strong>Porta Trunk:</strong> Trasporta più VLAN (tag
-                  <strong>802.1Q</strong>) tra switch o verso il router.
-                </li>
-                <li>
-                  <strong>Router-on-a-stick:</strong> Uso di una singola porta
-                  fisica del router divisa in <em>sub-interfacce</em> logiche
-                  per il routing inter-VLAN.
-                </li>
-              </ul>
+            <h3 class="sub reti">2.4 VLAN e Trunking</h3>
+            <p>
+              Le VLAN segmentano logicamente lo switch fisico in più domini di
+              broadcast.
+            </p>
+            <ul>
+              <li>
+                <strong>Porta Access:</strong> Appartiene a una sola VLAN (es.
+                per i PC).
+              </li>
+              <li>
+                <strong>Porta Trunk:</strong> Trasporta più VLAN (tag
+                <strong>802.1Q</strong>) tra switch o verso il router.
+              </li>
+              <li>
+                <strong>Router-on-a-stick:</strong> Uso di una singola porta
+                fisica del router divisa in <em>sub-interfacce</em> logiche per
+                il routing inter-VLAN.
+              </li>
+            </ul>
 
-              <pre><code><span class="ll">Cisco CLI - Router-on-a-stick</span>Router(config)# interface g0/0.10
+            <pre><code><span class="ll">Cisco CLI - Router-on-a-stick</span>Router(config)# interface g0/0.10
 Router(config-subif)# encapsulation dot1Q 10
 Router(config-subif)# ip address 192.168.10.1 255.255.255.0</code></pre>
-            </section>
+          </section>
 
-            <section id="s-subnet">
-              <h3 class="reti">Indirizzamento e Subnetting</h3>
-              <p>
-                Un indirizzo IPv4 è un numero di <strong>32 bit</strong> diviso
-                in 4 ottetti. Si compone di una
-                <em>Parte Network</em> (identifica la rete) e una
-                <em>Parte Host</em> (identifica il dispositivo).
-              </p>
+          <section id="s-subnet" class="arg-block">
+            <h3 class="reti">Indirizzamento e Subnetting</h3>
+            <p>
+              Un indirizzo IPv4 è un numero di <strong>32 bit</strong> diviso in
+              4 ottetti. Si compone di una <em>Parte Network</em> (identifica la
+              rete) e una <em>Parte Host</em> (identifica il dispositivo).
+            </p>
 
-              <h3 class="sub reti">Subnet Mask e Operazione AND</h3>
-              <p>
-                La subnet mask indica dove finisce la rete e dove iniziano gli
-                host. Il router esegue un <strong>AND bit a bit</strong> tra
-                l'IP e la maschera per ricavare l'indirizzo di rete.
-              </p>
-              <pre><code><span class="ll">Esempio AND</span>IP:      192.168.1.132 -> 11000000.10101000.00000001.10000100
+            <h3 class="sub reti">Subnet Mask e Operazione AND</h3>
+            <p>
+              La subnet mask indica dove finisce la rete e dove iniziano gli
+              host. Il router esegue un <strong>AND bit a bit</strong> tra l'IP
+              e la maschera per ricavare l'indirizzo di rete.
+            </p>
+            <pre><code><span class="ll">Esempio AND</span>IP:      192.168.1.132 -> 11000000.10101000.00000001.10000100
 MASK:    255.255.255.0 -> 11111111.11111111.11111111.00000000
 NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
 
-              <h3 class="sub reti">Classi IP e CIDR</h3>
-              <p>
-                Originariamente gli IP erano divisi in classi fisse (A, B, C),
-                ma questo causava sprechi. Nel 1993 è stato introdotto il
-                <strong>CIDR (Classless Inter-Domain Routing)</strong>, che usa
-                la notazione <code>/N</code> per indicare il numero di bit a 1
-                nella maschera.
-              </p>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">Classi IP e CIDR</h3>
+            <p>
+              Originariamente gli IP erano divisi in classi fisse (A, B, C), ma
+              questo causava sprechi. Nel 1993 è stato introdotto il
+              <strong>CIDR (Classless Inter-Domain Routing)</strong>, che usa la
+              notazione <code>/N</code> per indicare il numero di bit a 1 nella
+              maschera.
+            </p>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Classe</th>
                   <th>Range (1° ott.)</th>
@@ -4787,113 +4811,112 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                   <td>255.255.255.0 (/24)</td>
                   <td>192.168.0.0 – 192.168.255.255</td>
                 </tr>
-                </table>
-              </div>
+              </table>
+            </div>
 
-              <h3 class="sub reti">FLSM vs VLSM</h3>
-              <ul>
-                <li>
-                  <strong>FLSM (Fixed Length):</strong> Tutte le sottoreti hanno
-                  la stessa dimensione. Semplice ma inefficiente.
-                </li>
-                <li>
-                  <strong>VLSM (Variable Length):</strong> Ogni sottorete è
-                  dimensionata sul numero reale di host necessari. Ottimizza lo
-                  spazio.
-                </li>
-              </ul>
-              <div class="callout tip">
-                <strong>Regola VLSM:</strong> Ordinare sempre le richieste di
-                host in modo <strong>decrescente</strong> (dalla più grande alla
-                più piccola) prima di assegnare gli indirizzi.
-              </div>
+            <h3 class="sub reti">FLSM vs VLSM</h3>
+            <ul>
+              <li>
+                <strong>FLSM (Fixed Length):</strong> Tutte le sottoreti hanno
+                la stessa dimensione. Semplice ma inefficiente.
+              </li>
+              <li>
+                <strong>VLSM (Variable Length):</strong> Ogni sottorete è
+                dimensionata sul numero reale di host necessari. Ottimizza lo
+                spazio.
+              </li>
+            </ul>
+            <div class="callout tip">
+              <strong>Regola VLSM:</strong> Ordinare sempre le richieste di host
+              in modo <strong>decrescente</strong> (dalla più grande alla più
+              piccola) prima di assegnare gli indirizzi.
+            </div>
 
-              <h3 class="sub reti">Esempio Progettazione ISP</h3>
-              <p>
-                Un ISP riceve il blocco <code>151.100.0.0/16</code> (65.536 IP)
-                e deve suddividerlo:
-              </p>
-              <ol>
-                <li>
-                  <strong>Clienti Residenziali (25.000 IP):</strong> Serve un
-                  <code>/17</code> (32.768 IP).<br />Range:
-                  <code>151.100.0.0/17</code> (da .0.0 a .127.255).
-                </li>
-                <li>
-                  <strong>Clienti Business (1.000 x /29 = 8.000 IP):</strong>
-                  Serve un <code>/19</code> (8.192 IP).<br />Range:
-                  <code>151.100.128.0/19</code> (da .128.0 a .159.255).
-                </li>
-                <li>
-                  <strong>Link Router P2P (200 x /31 = 400 IP):</strong> Serve
-                  un <code>/23</code> (512 IP).<br />Range:
-                  <code>151.100.160.0/23</code>.
-                </li>
-                <li>
-                  <strong>Infrastruttura (300 IP):</strong> Serve un
-                  <code>/23</code>.<br />Range: <code>151.100.162.0/23</code>.
-                </li>
-              </ol>
-              <p>
-                <em
-                  >Resta ampio spazio libero (da .164.0 in poi) per espansioni
-                  future.</em
-                >
-              </p>
-            </section>
+            <h3 class="sub reti">Esempio Progettazione ISP</h3>
+            <p>
+              Un ISP riceve il blocco <code>151.100.0.0/16</code> (65.536 IP) e
+              deve suddividerlo:
+            </p>
+            <ol>
+              <li>
+                <strong>Clienti Residenziali (25.000 IP):</strong> Serve un
+                <code>/17</code> (32.768 IP).<br />Range:
+                <code>151.100.0.0/17</code> (da .0.0 a .127.255).
+              </li>
+              <li>
+                <strong>Clienti Business (1.000 x /29 = 8.000 IP):</strong>
+                Serve un <code>/19</code> (8.192 IP).<br />Range:
+                <code>151.100.128.0/19</code> (da .128.0 a .159.255).
+              </li>
+              <li>
+                <strong>Link Router P2P (200 x /31 = 400 IP):</strong> Serve un
+                <code>/23</code> (512 IP).<br />Range:
+                <code>151.100.160.0/23</code>.
+              </li>
+              <li>
+                <strong>Infrastruttura (300 IP):</strong> Serve un
+                <code>/23</code>.<br />Range: <code>151.100.162.0/23</code>.
+              </li>
+            </ol>
+            <p>
+              <em
+                >Resta ampio spazio libero (da .164.0 in poi) per espansioni
+                future.</em
+              >
+            </p>
+          </section>
 
-            <section id="s-modulo3">
-              <h3 class="reti">Modulo 3: Servizi di Rete e Indirizzamento</h3>
+          <section id="s-modulo3" class="arg-block">
+            <h3 class="reti">Modulo 3: Servizi di Rete e Indirizzamento</h3>
 
-              <h3 class="sub reti">
-                3.1 DHCP (Dynamic Host Configuration Protocol)
-              </h3>
-              <p>
-                Assegna automaticamente IP, mask, gateway e DNS agli host. Usa
-                UDP (porte 67 e 68).
-              </p>
-              <ul>
-                <li>
-                  <strong>Processo DORA:</strong> Discover (broadcast), Offer,
-                  Request, Acknowledgment (ACK).
-                </li>
-                <li>
-                  <strong>Lease Time:</strong> Tempo di "noleggio"
-                  dell'indirizzo.
-                </li>
-                <li>
-                  <strong>APIPA (169.254.x.x):</strong> Fallback se il server
-                  DHCP non risponde. Permette solo comunicazioni locali.
-                </li>
-                <li>
-                  <strong>DHCP Relay:</strong> Il router inoltra in unicast i
-                  pacchetti broadcast verso un server remoto (comando
-                  <code>ip helper-address</code>).
-                </li>
-              </ul>
+            <h3 class="sub reti">
+              3.1 DHCP (Dynamic Host Configuration Protocol)
+            </h3>
+            <p>
+              Assegna automaticamente IP, mask, gateway e DNS agli host. Usa UDP
+              (porte 67 e 68).
+            </p>
+            <ul>
+              <li>
+                <strong>Processo DORA:</strong> Discover (broadcast), Offer,
+                Request, Acknowledgment (ACK).
+              </li>
+              <li>
+                <strong>Lease Time:</strong> Tempo di "noleggio" dell'indirizzo.
+              </li>
+              <li>
+                <strong>APIPA (169.254.x.x):</strong> Fallback se il server DHCP
+                non risponde. Permette solo comunicazioni locali.
+              </li>
+              <li>
+                <strong>DHCP Relay:</strong> Il router inoltra in unicast i
+                pacchetti broadcast verso un server remoto (comando
+                <code>ip helper-address</code>).
+              </li>
+            </ul>
 
-              <h3 class="sub reti">3.2 DNS (Domain Name System)</h3>
-              <p>
-                Risolve nomi mnemonici (es. www.google.it) in IP. È una
-                gerarchia distribuita:
-              </p>
-              <ul>
-                <li>
-                  <strong>Root Zone:</strong> Identificata dal punto (.).
-                  Gestita da 13 root nameserver.
-                </li>
-                <li>
-                  <strong>TLD (Top Level Domain):</strong>Paesi (.it) o generici
-                  (.com, .org).
-                </li>
-                <li>
-                  <strong>Recursive vs Authoritative:</strong> Il primo cerca la
-                  risposta interrogando altri server; il secondo è il
-                  proprietario ufficiale dei dati di una zona.
-                </li>
-              </ul>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">3.2 DNS (Domain Name System)</h3>
+            <p>
+              Risolve nomi mnemonici (es. www.google.it) in IP. È una gerarchia
+              distribuita:
+            </p>
+            <ul>
+              <li>
+                <strong>Root Zone:</strong> Identificata dal punto (.). Gestita
+                da 13 root nameserver.
+              </li>
+              <li>
+                <strong>TLD (Top Level Domain):</strong>Paesi (.it) o generici
+                (.com, .org).
+              </li>
+              <li>
+                <strong>Recursive vs Authoritative:</strong> Il primo cerca la
+                risposta interrogando altri server; il secondo è il proprietario
+                ufficiale dei dati di una zona.
+              </li>
+            </ul>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Record</th>
                   <th>Nome</th>
@@ -4922,40 +4945,40 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                   <td>Text</td>
                   <td>Informazioni testuali (es. verifica proprietà, SPF).</td>
                 </tr>
-                </table>
-              </div>
-              <div class="callout tip">
-                <strong>Strumenti:</strong> Usa
-                <code>nslookup example.com</code> per verificare i record DNS da
-                terminale.
-              </div>
+              </table>
+            </div>
+            <div class="callout tip">
+              <strong>Strumenti:</strong> Usa
+              <code>nslookup example.com</code> per verificare i record DNS da
+              terminale.
+            </div>
 
-              <h3 class="sub reti">3.3 NAT (Network Address Translation)</h3>
-              <p>
-                Consente a dispositivi con IP privati (non instradabili) di
-                navigare su Internet.
-              </p>
-              <ul>
-                <li>
-                  <strong>Inside Local:</strong> IP reale dell'host interno
-                  (privato).
-                </li>
-                <li>
-                  <strong>Inside Global:</strong> IP pubblico con cui l'host è
-                  visto all'esterno.
-                </li>
-                <li>
-                  <strong>Outside Global:</strong> IP reale dell'host esterno su
-                  Internet.
-                </li>
-                <li>
-                  <strong>CGNAT (Double NAT):</strong> Quando anche il provider
-                  applica NAT sulla propria rete.
-                </li>
-              </ul>
-              <p><strong>Modalità operative:</strong></p>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">3.3 NAT (Network Address Translation)</h3>
+            <p>
+              Consente a dispositivi con IP privati (non instradabili) di
+              navigare su Internet.
+            </p>
+            <ul>
+              <li>
+                <strong>Inside Local:</strong> IP reale dell'host interno
+                (privato).
+              </li>
+              <li>
+                <strong>Inside Global:</strong> IP pubblico con cui l'host è
+                visto all'esterno.
+              </li>
+              <li>
+                <strong>Outside Global:</strong> IP reale dell'host esterno su
+                Internet.
+              </li>
+              <li>
+                <strong>CGNAT (Double NAT):</strong> Quando anche il provider
+                applica NAT sulla propria rete.
+              </li>
+            </ul>
+            <p><strong>Modalità operative:</strong></p>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Associazione</th>
@@ -4976,22 +4999,22 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                   <td>Molti IP Privati → 1 IP Pubblico</td>
                   <td>Navigazione standard di tutta la LAN domestica.</td>
                 </tr>
-                </table>
-              </div>
-            </section>
+              </table>
+            </div>
+          </section>
 
-            <section id="s-modulo4">
-              <h3 class="reti">Modulo 4: Routing (Instradamento)</h3>
-              <p>
-                Processo di selezione del cammino migliore tra reti diverse. Il
-                router consulta la <strong>Routing Table</strong>, che contiene:
-                <em>Network</em>, <em>Next hop</em>, <em>Interfaccia</em> e
-                <em>Metrica</em>.
-              </p>
+          <section id="s-modulo4" class="arg-block">
+            <h3 class="reti">Modulo 4: Routing (Instradamento)</h3>
+            <p>
+              Processo di selezione del cammino migliore tra reti diverse. Il
+              router consulta la <strong>Routing Table</strong>, che contiene:
+              <em>Network</em>, <em>Next hop</em>, <em>Interfaccia</em> e
+              <em>Metrica</em>.
+            </p>
 
-              <h3 class="sub reti">4.1 Algoritmi e Protocolli Dinamici</h3>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">4.1 Algoritmi e Protocolli Dinamici</h3>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Protocollo</th>
                   <th>Algoritmo / Tipo</th>
@@ -5014,53 +5037,51 @@ NETWORK: 192.168.1.0   -> 11000000.10101000.00000001.00000000</code></pre>
                     AD: 110.
                   </td>
                 </tr>
-                </table>
-              </div>
+              </table>
+            </div>
 
-              <h3 class="sub reti">Prevenzione Loop (RIP)</h3>
-              <ul>
-                <li>
-                  <strong>Split Horizon:</strong> Non re-inviare info sulla
-                  rotta al router da cui sono state apprese.
-                </li>
-                <li>
-                  <strong>Route Poisoning:</strong> Marcare una rotta guasta con
-                  metrica infinita (16).
-                </li>
-                <li>
-                  <strong>Holddown Timer:</strong> Ignorare update per una rotta
-                  instabile per un tempo definito.
-                </li>
-              </ul>
+            <h3 class="sub reti">Prevenzione Loop (RIP)</h3>
+            <ul>
+              <li>
+                <strong>Split Horizon:</strong> Non re-inviare info sulla rotta
+                al router da cui sono state apprese.
+              </li>
+              <li>
+                <strong>Route Poisoning:</strong> Marcare una rotta guasta con
+                metrica infinita (16).
+              </li>
+              <li>
+                <strong>Holddown Timer:</strong> Ignorare update per una rotta
+                instabile per un tempo definito.
+              </li>
+            </ul>
 
-              <h3 class="sub reti">Verifica Cisco CLI</h3>
-              <pre><code><span class="ll">Comandi di stato</span>Router# show ip interface brief  <span class="cm">-- Stato interfacce e IP</span>
+            <h3 class="sub reti">Verifica Cisco CLI</h3>
+            <pre><code><span class="ll">Comandi di stato</span>Router# show ip interface brief  <span class="cm">-- Stato interfacce e IP</span>
 Router# show ip route            <span class="cm">-- Tabella di instradamento</span>
 Router# show ip ospf neighbor    <span class="cm">-- Adiacenze OSPF attive</span>
 Router# ping 8.8.8.8             <span class="cm">-- Test connettività L3</span>
 Router# traceroute 8.8.8.8       <span class="cm">-- Analisi del percorso</span></code></pre>
-              <div class="callout tip">
-                <strong>AD (Administrative Distance):</strong> Grado di
-                affidabilità di una rotta. Se ci sono più protocolli per la
-                stessa meta, vince quello con AD più bassa (es. OSPF 110 vince
-                su RIP 120).
-              </div>
-            </section>
+            <div class="callout tip">
+              <strong>AD (Administrative Distance):</strong> Grado di
+              affidabilità di una rotta. Se ci sono più protocolli per la stessa
+              meta, vince quello con AD più bassa (es. OSPF 110 vince su RIP
+              120).
+            </div>
+          </section>
 
-            <section id="s-modulo5">
-              <h3 class="reti">
-                Modulo 5: Sicurezza e Controllo degli Accessi
-              </h3>
+          <section id="s-modulo5" class="arg-block">
+            <h3 class="reti">Modulo 5: Sicurezza e Controllo degli Accessi</h3>
 
-              <h3 class="sub reti">5.1 ACL (Access Control Lists)</h3>
-              <p>
-                Set di regole (ACE) elaborate sequenzialmente per filtrare il
-                traffico. Ogni ACL termina con un
-                <strong>Implicit Deny</strong>: tutto ciò che non è permesso
-                esplicitamente viene bloccato.
-              </p>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">5.1 ACL (Access Control Lists)</h3>
+            <p>
+              Set di regole (ACE) elaborate sequenzialmente per filtrare il
+              traffico. Ogni ACL termina con un
+              <strong>Implicit Deny</strong>: tutto ciò che non è permesso
+              esplicitamente viene bloccato.
+            </p>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Tipo</th>
                   <th>Numerazione</th>
@@ -5085,180 +5106,179 @@ Router# traceroute 8.8.8.8       <span class="cm">-- Analisi del percorso</span>
                     banda).
                   </td>
                 </tr>
-                </table>
-              </div>
-              <div class="callout warn">
-                <strong>Parametro established:</strong> Nelle ACL estese,
-                permette solo il traffico TCP di risposta (ACK o RST set).
-                Impedisce che un host esterno inizi una nuova connessione verso
-                la LAN interna.
-              </div>
+              </table>
+            </div>
+            <div class="callout warn">
+              <strong>Parametro established:</strong> Nelle ACL estese, permette
+              solo il traffico TCP di risposta (ACK o RST set). Impedisce che un
+              host esterno inizi una nuova connessione verso la LAN interna.
+            </div>
 
-              <h3 class="sub reti">5.2 Firewall e ASA 5506-X</h3>
-              <p>
-                Il Firewall separa zone a diverso livello di fiducia (<strong
-                  >Security Levels 0-100</strong
-                >).
-              </p>
-              <ul>
-                <li>
-                  <strong>Inside (100):</strong> Rete fidata. |
-                  <strong>Outside (0):</strong> Internet. |
-                  <strong>DMZ (50):</strong> Zona neutra per server pubblici.
-                </li>
-                <li>
-                  <strong>Flusso Predefinito:</strong> Traffico da liv. alto a
-                  basso è <em>consentito</em>; da basso ad alto è
-                  <em>bloccato</em>.
-                </li>
-                <li>
-                  <strong>Stateful Inspection:</strong> A differenza delle ACL
-                  (stateless), il firewall tiene traccia dello stato delle
-                  connessioni attive.
-                </li>
-              </ul>
-              <p><strong>MPF (Modular Policy Framework):</strong></p>
-              <pre><code><span class="ll">Cisco ASA CLI</span>class-map inspection_default
+            <h3 class="sub reti">5.2 Firewall e ASA 5506-X</h3>
+            <p>
+              Il Firewall separa zone a diverso livello di fiducia (<strong
+                >Security Levels 0-100</strong
+              >).
+            </p>
+            <ul>
+              <li>
+                <strong>Inside (100):</strong> Rete fidata. |
+                <strong>Outside (0):</strong> Internet. |
+                <strong>DMZ (50):</strong> Zona neutra per server pubblici.
+              </li>
+              <li>
+                <strong>Flusso Predefinito:</strong> Traffico da liv. alto a
+                basso è <em>consentito</em>; da basso ad alto è
+                <em>bloccato</em>.
+              </li>
+              <li>
+                <strong>Stateful Inspection:</strong> A differenza delle ACL
+                (stateless), il firewall tiene traccia dello stato delle
+                connessioni attive.
+              </li>
+            </ul>
+            <p><strong>MPF (Modular Policy Framework):</strong></p>
+            <pre><code><span class="ll">Cisco ASA CLI</span>class-map inspection_default
  match default-inspection-traffic
 policy-map global_policy
  class inspection_default
   inspect icmp   <span class="cm">-- Abilita il ping attraverso l'ASA</span></code></pre>
 
-              <h3 class="sub reti">5.3 AAA e RADIUS</h3>
-              <p>Framework per la gestione centralizzata degli accessi:</p>
-              <ul>
-                <li>
-                  <strong>Authentication:</strong> Chi sei? (Username/Password).
-                </li>
-                <li>
-                  <strong>Authorization:</strong> Cosa puoi fare? (Privilegi,
-                  comandi).
-                </li>
-                <li>
-                  <strong>Accounting:</strong> Cosa hai fatto? (Log delle
-                  attività).
-                </li>
-                <li>
-                  <strong>RADIUS:</strong> Protocollo standard (UDP 1812/1813)
-                  per l'autenticazione remota.
-                </li>
-              </ul>
+            <h3 class="sub reti">5.3 AAA e RADIUS</h3>
+            <p>Framework per la gestione centralizzata degli accessi:</p>
+            <ul>
+              <li>
+                <strong>Authentication:</strong> Chi sei? (Username/Password).
+              </li>
+              <li>
+                <strong>Authorization:</strong> Cosa puoi fare? (Privilegi,
+                comandi).
+              </li>
+              <li>
+                <strong>Accounting:</strong> Cosa hai fatto? (Log delle
+                attività).
+              </li>
+              <li>
+                <strong>RADIUS:</strong> Protocollo standard (UDP 1812/1813) per
+                l'autenticazione remota.
+              </li>
+            </ul>
 
-              <h3 class="sub reti">5.4 VPN (Virtual Private Network)</h3>
-              <p>
-                Estende una rete privata su infrastruttura pubblica tramite
-                <strong>Tunneling</strong> e cifratura.
-              </p>
-              <ul>
-                <li>
-                  <strong>Site-to-Site:</strong> Collega due sedi aziendali in
-                  modo trasparente.
-                </li>
-                <li>
-                  <strong>Remote Access:</strong> Un singolo utente si collega
-                  alla sede (es. Smart Working).
-                </li>
-                <li>
-                  <strong>IPsec Phases:</strong> Fase 1 (IKE) stabilisce il
-                  canale sicuro; Fase 2 (IPsec) cifra i dati reali.
-                </li>
-              </ul>
-            </section>
+            <h3 class="sub reti">5.4 VPN (Virtual Private Network)</h3>
+            <p>
+              Estende una rete privata su infrastruttura pubblica tramite
+              <strong>Tunneling</strong> e cifratura.
+            </p>
+            <ul>
+              <li>
+                <strong>Site-to-Site:</strong> Collega due sedi aziendali in
+                modo trasparente.
+              </li>
+              <li>
+                <strong>Remote Access:</strong> Un singolo utente si collega
+                alla sede (es. Smart Working).
+              </li>
+              <li>
+                <strong>IPsec Phases:</strong> Fase 1 (IKE) stabilisce il canale
+                sicuro; Fase 2 (IPsec) cifra i dati reali.
+              </li>
+            </ul>
+          </section>
 
-            <section id="s-modulo6">
-              <h3 class="reti">Modulo 6: Reti Wireless (WLAN)</h3>
-              <p>
-                Infrastruttura che integra il dominio radio
-                (<strong>802.11</strong>) con quello cablato
-                (<strong>802.3</strong>).
-              </p>
+          <section id="s-modulo6" class="arg-block">
+            <h3 class="reti">Modulo 6: Reti Wireless (WLAN)</h3>
+            <p>
+              Infrastruttura che integra il dominio radio
+              (<strong>802.11</strong>) con quello cablato
+              (<strong>802.3</strong>).
+            </p>
 
-              <h3 class="sub reti">6.1 Meccanismo CSMA/CA</h3>
-              <p>
-                A differenza di Ethernet, il Wi-Fi non può rilevare collisioni
-                (CD). Usa la <strong>Collision Avoidance</strong>:
-              </p>
-              <ul>
-                <li>
-                  <strong>Ascolto:</strong> Se il canale è libero, attende un
-                  tempo casuale (backoff) prima di trasmettere.
-                </li>
-                <li>
-                  <strong>ACK:</strong> Il destinatario deve confermare ogni
-                  frame. Se l'ACK non arriva, la stazione presume una collisione
-                  e ritenta.
-                </li>
-              </ul>
+            <h3 class="sub reti">6.1 Meccanismo CSMA/CA</h3>
+            <p>
+              A differenza di Ethernet, il Wi-Fi non può rilevare collisioni
+              (CD). Usa la <strong>Collision Avoidance</strong>:
+            </p>
+            <ul>
+              <li>
+                <strong>Ascolto:</strong> Se il canale è libero, attende un
+                tempo casuale (backoff) prima di trasmettere.
+              </li>
+              <li>
+                <strong>ACK:</strong> Il destinatario deve confermare ogni
+                frame. Se l'ACK non arriva, la stazione presume una collisione e
+                ritenta.
+              </li>
+            </ul>
 
-              <h3 class="sub reti">6.2 Organizzazione del Servizio</h3>
-              <ul>
-                <li>
-                  <strong>BSS (Basic Service Set):</strong> Un Access Point e i
-                  suoi client associati. Identificato dal
-                  <strong>BSSID</strong> (MAC dell'AP).
-                </li>
-                <li>
-                  <strong>SSID (Service Set Identifier):</strong> Nome logico
-                  della rete (es. "WiFi-Scuola"). Annunciato dai
-                  <strong>Beacon</strong>.
-                </li>
-                <li>
-                  <strong>ESS (Extended Service Set):</strong> Più BSS collegati
-                  allo stesso switch, permettono il
-                  <em>Roaming</em> (spostamento tra AP senza caduta).
-                </li>
-              </ul>
+            <h3 class="sub reti">6.2 Organizzazione del Servizio</h3>
+            <ul>
+              <li>
+                <strong>BSS (Basic Service Set):</strong> Un Access Point e i
+                suoi client associati. Identificato dal
+                <strong>BSSID</strong> (MAC dell'AP).
+              </li>
+              <li>
+                <strong>SSID (Service Set Identifier):</strong> Nome logico
+                della rete (es. "WiFi-Scuola"). Annunciato dai
+                <strong>Beacon</strong>.
+              </li>
+              <li>
+                <strong>ESS (Extended Service Set):</strong> Più BSS collegati
+                allo stesso switch, permettono il <em>Roaming</em> (spostamento
+                tra AP senza caduta).
+              </li>
+            </ul>
 
-              <h3 class="sub reti">6.3 Architettura Controller-Based</h3>
-              <p>
-                In reti grandi, gli AP non sono autonomi ma gestiti da un
-                <strong>WLC (Wireless LAN Controller)</strong>.
-              </p>
-              <ul>
-                <li>
-                  <strong>Lightweight AP (LAP):</strong> AP "leggeri" che
-                  delegano la gestione al controller.
-                </li>
-                <li>
-                  <strong>Split-MAC Architecture:</strong> L'AP gestisce le
-                  funzioni radio real-time; il WLC gestisce config, sicurezza e
-                  associazioni.
-                </li>
-                <li>
-                  <strong>CAPWAP:</strong> Protocollo di tunneling tra AP e WLC.
-                </li>
-                <li>
-                  <strong>DHCP Option 43:</strong> Permette agli AP di scoprire
-                  automaticamente l'IP del WLC.
-                </li>
-              </ul>
-              <div class="callout tip">
-                <strong>FlexConnect:</strong> Modalità che permette agli AP di
-                continuare a funzionare localmente anche se perdono la
-                connessione col WLC.
-              </div>
-            </section>
+            <h3 class="sub reti">6.3 Architettura Controller-Based</h3>
+            <p>
+              In reti grandi, gli AP non sono autonomi ma gestiti da un
+              <strong>WLC (Wireless LAN Controller)</strong>.
+            </p>
+            <ul>
+              <li>
+                <strong>Lightweight AP (LAP):</strong> AP "leggeri" che delegano
+                la gestione al controller.
+              </li>
+              <li>
+                <strong>Split-MAC Architecture:</strong> L'AP gestisce le
+                funzioni radio real-time; il WLC gestisce config, sicurezza e
+                associazioni.
+              </li>
+              <li>
+                <strong>CAPWAP:</strong> Protocollo di tunneling tra AP e WLC.
+              </li>
+              <li>
+                <strong>DHCP Option 43:</strong> Permette agli AP di scoprire
+                automaticamente l'IP del WLC.
+              </li>
+            </ul>
+            <div class="callout tip">
+              <strong>FlexConnect:</strong> Modalità che permette agli AP di
+              continuare a funzionare localmente anche se perdono la connessione
+              col WLC.
+            </div>
+          </section>
 
-            <section id="s-approfondimenti">
-              <h3 class="reti">Tecnologie Emergenti e Approfondimenti</h3>
+          <section id="s-approfondimenti" class="arg-block">
+            <h3 class="reti">Tecnologie Emergenti e Approfondimenti</h3>
 
-              <h3 class="sub reti">Cloud Computing</h3>
-              <p>
-                Erogazione di servizi (storage, server, DB) tramite Internet con
-                modello <em>pay-as-you-go</em>.
-              </p>
-              <ul>
-                <li>
-                  <strong>Modelli di Deployment:</strong> Public (risorse
-                  condivise), Private (dedicato), Hybrid (mix dei due).
-                </li>
-                <li>
-                  <strong>Multi-tenancy:</strong> Più utenti (tenant)
-                  condividono le stesse risorse fisiche, isolati via software.
-                </li>
-              </ul>
-              <div class="table-wrapper">
-                <table>
+            <h3 class="sub reti">Cloud Computing</h3>
+            <p>
+              Erogazione di servizi (storage, server, DB) tramite Internet con
+              modello <em>pay-as-you-go</em>.
+            </p>
+            <ul>
+              <li>
+                <strong>Modelli di Deployment:</strong> Public (risorse
+                condivise), Private (dedicato), Hybrid (mix dei due).
+              </li>
+              <li>
+                <strong>Multi-tenancy:</strong> Più utenti (tenant) condividono
+                le stesse risorse fisiche, isolati via software.
+              </li>
+            </ul>
+            <div class="table-wrapper">
+              <table>
                 <tr>
                   <th>Modello</th>
                   <th>Nome</th>
@@ -5287,69 +5307,67 @@ policy-map global_policy
                     Office 365).
                   </td>
                 </tr>
-                </table>
-              </div>
+              </table>
+            </div>
 
-              <h3 class="sub reti">Crittografia</h3>
-              <p>
-                Tecnica per rendere i messaggi incomprensibili ai non
-                autorizzati.
-              </p>
-              <ul>
-                <li>
-                  <strong>Simmetrica:</strong> Stessa chiave per cifrare e
-                  decifrare (es. <strong>AES</strong>). Veloce ma difficile
-                  distribuire le chiavi.
-                </li>
-                <li>
-                  <strong>Asimmetrica:</strong> Coppia di chiavi:
-                  <em>Pubblica</em> (diffusa) e <em>Privata</em> (segreta). Un
-                  messaggio cifrato con la pubblica si apre solo con la privata
-                  (es. <strong>RSA</strong>).
-                </li>
-                <li>
-                  <strong>Metodo Ibrido:</strong> Si usa la crittografia
-                  asimmetrica solo per scambiarsi una chiave simmetrica (più
-                  veloce per i dati reali).
-                </li>
-              </ul>
-              <div class="callout warn">
-                <strong>Hash (MD5, SHA-2):</strong> Funzione unidirezionale che
-                genera un'impronta fissa di un dato. Usata per verificare
-                l'<strong>integrità</strong> (se il file cambia, l'hash cambia).
-              </div>
-              <p>
-                <strong>Firma Digitale:</strong> Documento cifrato con la chiave
-                <em>privata</em> del mittente. Garantisce autenticità e non
-                ripudio.<br />
-                <strong>Certificato Digitale:</strong> Documento rilasciato da
-                una <em>CA (Certification Authority)</em> che associa una chiave
-                pubblica a un'identità certa.
-              </p>
-            </section>
+            <h3 class="sub reti">Crittografia</h3>
+            <p>
+              Tecnica per rendere i messaggi incomprensibili ai non autorizzati.
+            </p>
+            <ul>
+              <li>
+                <strong>Simmetrica:</strong> Stessa chiave per cifrare e
+                decifrare (es. <strong>AES</strong>). Veloce ma difficile
+                distribuire le chiavi.
+              </li>
+              <li>
+                <strong>Asimmetrica:</strong> Coppia di chiavi:
+                <em>Pubblica</em> (diffusa) e <em>Privata</em> (segreta). Un
+                messaggio cifrato con la pubblica si apre solo con la privata
+                (es. <strong>RSA</strong>).
+              </li>
+              <li>
+                <strong>Metodo Ibrido:</strong> Si usa la crittografia
+                asimmetrica solo per scambiarsi una chiave simmetrica (più
+                veloce per i dati reali).
+              </li>
+            </ul>
+            <div class="callout warn">
+              <strong>Hash (MD5, SHA-2):</strong> Funzione unidirezionale che
+              genera un'impronta fissa di un dato. Usata per verificare
+              l'<strong>integrità</strong> (se il file cambia, l'hash cambia).
+            </div>
+            <p>
+              <strong>Firma Digitale:</strong> Documento cifrato con la chiave
+              <em>privata</em> del mittente. Garantisce autenticità e non
+              ripudio.<br />
+              <strong>Certificato Digitale:</strong> Documento rilasciato da una
+              <em>CA (Certification Authority)</em> che associa una chiave
+              pubblica a un'identità certa.
+            </p>
+          </section>
 
-            <section id="s-esercitazioni">
-              <h3 class="reti">Esercitazioni e Laboratorio</h3>
-              <div class="callout tip">
-                <strong>Esercitazione Tipo:</strong> Progettare una rete con 3
-                VLAN (Admin, Guest, VoIP), DHCP centralizzato, routing OSPF e
-                una DMZ protetta da Extended ACL.
-              </div>
-            </section>
+          <section id="s-esercitazioni" class="arg-block">
+            <h3 class="reti">Esercitazioni e Laboratorio</h3>
+            <div class="callout tip">
+              <strong>Esercitazione Tipo:</strong> Progettare una rete con 3
+              VLAN (Admin, Guest, VoIP), DHCP centralizzato, routing OSPF e una
+              DMZ protetta da Extended ACL.
+            </div>
+          </section>
 
-            <section id="s-esame">
-              <h3 class="reti">Esame di Stato: Temi Ricorrenti</h3>
-              <p>Analisi delle prove di Sistemi e Reti:</p>
-              <ul>
-                <li>Dimensionamento sottoreti con <strong>VLSM</strong>.</li>
-                <li>
-                  Configurazione di <strong>ACL</strong> per proteggere la rete
-                  interna.
-                </li>
-                <li>Scelta del protocollo di routing e diagramma di flusso.</li>
-                <li>Sicurezza dei dati e conformità <strong>GDPR</strong>.</li>
-              </ul>
-            </section>
+          <section id="s-esame" class="arg-block">
+            <h3 class="reti">Esame di Stato: Temi Ricorrenti</h3>
+            <p>Analisi delle prove di Sistemi e Reti:</p>
+            <ul>
+              <li>Dimensionamento sottoreti con <strong>VLSM</strong>.</li>
+              <li>
+                Configurazione di <strong>ACL</strong> per proteggere la rete
+                interna.
+              </li>
+              <li>Scelta del protocollo di routing e diagramma di flusso.</li>
+              <li>Sicurezza dei dati e conformità <strong>GDPR</strong>.</li>
+            </ul>
           </section>
         </main>
       </div>
@@ -5797,7 +5815,7 @@ policy-map global_policy
             }
           });
         },
-        { threshold: 0.08 },
+        { threshold: 0 },
       );
 
       document.querySelectorAll("section[id]").forEach((sec) => {
