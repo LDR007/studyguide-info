@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Guida allo studio per Informatica e Sistemi e Reti."
-    />
+
     <meta
       name="description"
       content="Guida completa gratuita per studiare SQL, PHP, PDO, Modello E-R, Algebra Relazionale, Normalizzazione, Subnetting, Routing OSPF e sicurezza reti. Perfetta per ITI e esame di stato informatica."
@@ -19,15 +16,73 @@
       name="google-site-verification"
       content="2Qu0hAJjwutSS_GIh0U5az20gIjw3_SVGh0rCFvEPmQ"
     />
-    <title>Study Guide — Informatica · Sistemi e Reti</title>
+    <meta
+      property="og:title"
+      content="Study Guide — Informatica · Sistemi e Reti"
+    />
+    <meta
+      property="og:description"
+      content="Guida gratuita SQL, PHP, subnetting, reti e database."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://ldr007.github.io/studyguide-info/"
+    />
+    <meta property="og:site_name" content="Study Guide Informatica" />
+    <meta property="og:locale" content="it_IT" />
+    <meta
+      property="og:image"
+      content="https://ldr007.github.io/studyguide-info/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Study Guide Informatica — SQL, PHP, Database, Sistemi e Reti"
+    />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Guida SQL, PHP, Database e Sistemi e Reti | Study Guide"
+    />
+    <meta
+      name="twitter:description"
+      content="Guida gratuita per SQL, PHP, PDO, Modello E-R, normalizzazione, subnetting e routing. Per ITI ed Esame di Stato."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ldr007.github.io/studyguide-info/og-image.png"
+    />
+
+    <title>
+      Guida SQL, PHP, Database e Sistemi e Reti | Study Guide Informatica
+    </title>
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
       rel="stylesheet"
     />
     <link rel="canonical" href="https://ldr007.github.io/studyguide-info/" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;800&display=swap");
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+    <!-- Fonts: preconnect + direct link (faster than CSS @import) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Speed up the Prism CDN handshake -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <style>
       :root {
         --bg: #0e0f14;
         --surface: #15161d;
@@ -956,25 +1011,40 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LearningResource",
-        "name": "Study Guide — Informatica e Sistemi e Reti",
-        "description": "Guida allo studio gratuita per SQL, PHP, Modello E-R, Algebra Relazionale, Normalizzazione e Reti.",
-        "educationalLevel": "UpperSecondary",
-        "inLanguage": "it",
-        "author": {
-          "@type": "Person",
-          "name": "Leonardo Di Re"
-        },
-        "teaches": [
-          "SQL",
-          "PHP",
-          "PDO",
-          "Modello ER",
-          "Algebra Relazionale",
-          "Normalizzazione",
-          "Subnetting",
-          "Routing",
-          "Sicurezza Reti"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://ldr007.github.io/studyguide-info/#website",
+            "url": "https://ldr007.github.io/studyguide-info/",
+            "name": "Study Guide Informatica",
+            "description": "Guida allo studio gratuita per Informatica e Sistemi e Reti.",
+            "inLanguage": "it"
+          },
+          {
+            "@type": "LearningResource",
+            "@id": "https://ldr007.github.io/studyguide-info/#resource",
+            "url": "https://ldr007.github.io/studyguide-info/",
+            "name": "Study Guide — Informatica e Sistemi e Reti",
+            "description": "Guida allo studio gratuita per SQL, PHP, PDO, Modello E-R, Algebra Relazionale, Normalizzazione, Subnetting, Routing e Sicurezza delle Reti.",
+            "educationalLevel": "UpperSecondary",
+            "learningResourceType": "Study guide",
+            "isAccessibleForFree": true,
+            "inLanguage": "it",
+            "isPartOf": {
+              "@id": "https://ldr007.github.io/studyguide-info/#website"
+            },
+            "teaches": [
+              "SQL",
+              "PHP",
+              "PDO",
+              "Modello ER",
+              "Algebra Relazionale",
+              "Normalizzazione",
+              "Subnetting",
+              "Routing",
+              "Sicurezza Reti"
+            ]
+          }
         ]
       }
     </script>
